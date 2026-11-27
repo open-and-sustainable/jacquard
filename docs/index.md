@@ -31,7 +31,7 @@ Validation produces reproducible findings with JSON Pointers to the affected val
 ## Open science
 
 Rules are explicit, and findings are inspectable. The project uses the
-[GNU AGPL v3](https://github.com/open-and-sustainable/jacquard/blob/main/LICENSE).
+[Apache License 2.0](https://github.com/open-and-sustainable/jacquard/blob/main/LICENSE).
 
 ## Citation
 

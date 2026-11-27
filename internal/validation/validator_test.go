@@ -1,4 +1,4 @@
-package jacquard_test
+package validation_test
 
 import (
 	"encoding/json"
@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/open-and-sustainable/jacquard"
+	"github.com/open-and-sustainable/jacquard/internal/validation"
 )
 
 func TestExplicitSchemaBoundaries(t *testing.T) {
@@ -34,7 +34,7 @@ func TestExplicitSchemaBoundaries(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			issues, err := jacquard.ValidateJSON([]byte(tt.input), []byte(tt.schema))
+			issues, err := validation.ValidateJSON([]byte(tt.input), []byte(tt.schema))
 			if err != nil {
 				t.Fatal(err)
 			}
@@ -52,7 +52,7 @@ func TestExplicitSchemaBoundaries(t *testing.T) {
 }
 
 func TestInvalidUTF8IsRejected(t *testing.T) {
-	issues, err := jacquard.ValidateJSON([]byte{'"', 0xff, '"'}, []byte(`{}`))
+	issues, err := validation.ValidateJSON([]byte{'"', 0xff, '"'}, []byte(`{}`))
 	if err != nil || len(issues) != 1 || issues[0].Code != "invalid_json" {
 		t.Fatalf("invalid UTF-8 accepted: %+v, %v", issues, err)
 	}
@@ -64,7 +64,7 @@ func TestSchemaCannotLoadExternalResources(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-		_, err = jacquard.ValidateJSON([]byte(`{}`), schema)
+		_, err = validation.ValidateJSON([]byte(`{}`), schema)
 		if err == nil || !strings.Contains(err.Error(), "external schema references are disabled") {
 			t.Fatalf("expected loader refusal for %s, got %v", reference, err)
 		}
@@ -73,7 +73,7 @@ func TestSchemaCannotLoadExternalResources(t *testing.T) {
 
 func TestMalformedSchemaIsAnError(t *testing.T) {
 	for _, schema := range []string{`{"type":`, `{"type":"not-a-type"}`, `{"$schema":"https://json-schema.org/draft/2020-12/schema"}`} {
-		if _, err := jacquard.ValidateJSON([]byte(`{}`), []byte(schema)); err == nil {
+		if _, err := validation.ValidateJSON([]byte(`{}`), []byte(schema)); err == nil {
 			t.Fatalf("accepted invalid schema %s", schema)
 		}
 	}
@@ -83,7 +83,7 @@ func TestFindingOrderIsDeterministic(t *testing.T) {
 	schema := []byte(`{"properties":{"z":{"type":"integer"},"a":{"type":"integer"}},"required":["missing"]}`)
 	var previous string
 	for i := 0; i < 30; i++ {
-		issues, err := jacquard.ValidateJSON([]byte(`{"z":"bad","a":"bad"}`), schema)
+		issues, err := validation.ValidateJSON([]byte(`{"z":"bad","a":"bad"}`), schema)
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -100,20 +100,20 @@ func TestFindingOrderIsDeterministic(t *testing.T) {
 }
 
 func TestTypedErrorsAndJSONResults(t *testing.T) {
-	err := jacquard.ValidateInput(`{}`)
-	var findings *jacquard.Error
+	err := validation.ValidateInput(`{}`)
+	var findings *validation.Error
 	if !errors.As(err, &findings) || len(findings.Issues) == 0 || !strings.Contains(err.Error(), "validation errors") {
 		t.Fatalf("want validation findings, got %v", err)
 	}
-	result := jacquard.ResultFor(err)
+	result := validation.ResultFor(err)
 	if result.Valid || len(result.Issues) == 0 || result.Error != "" {
 		t.Fatalf("invalid finding result: %+v", result)
 	}
-	result = jacquard.ResultFor(jacquard.Validate(`{}`, "unknown"))
+	result = validation.ResultFor(validation.Validate(`{}`, "unknown"))
 	if result.Valid || result.Error == "" || len(result.Issues) != 0 {
 		t.Fatalf("invalid configuration error result: %+v", result)
 	}
-	encoded, _ := json.Marshal(jacquard.ResultFor(nil))
+	encoded, _ := json.Marshal(validation.ResultFor(nil))
 	if string(encoded) != `{"valid":true,"issues":[]}` {
 		t.Fatalf("unexpected success shape: %s", encoded)
 	}

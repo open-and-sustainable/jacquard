@@ -1,4 +1,4 @@
-package jacquard_test
+package test
 
 import (
 	"errors"
@@ -8,7 +8,7 @@ import (
 	"github.com/open-and-sustainable/jacquard"
 )
 
-func ExampleValidateInput() {
+func Example_validateInput() {
 	input := `{
 		"document": {
 			"document_id": "synthetic-example",
@@ -31,7 +31,7 @@ func ExampleValidateInput() {
 	// Output: valid request shape
 }
 
-func ExampleValidateJSON() {
+func Example_validateJSON() {
 	issues, err := jacquard.ValidateJSON(
 		[]byte(`{"participants":"three"}`),
 		[]byte(`{"type":"object","properties":{"participants":{"type":"integer"}}}`),
@@ -45,7 +45,7 @@ func ExampleValidateJSON() {
 	// Output: schema_type #/participants
 }
 
-func ExampleError() {
+func Example_error() {
 	err := jacquard.ValidateInput(`{}`)
 	var findings *jacquard.Error
 	if errors.As(err, &findings) {

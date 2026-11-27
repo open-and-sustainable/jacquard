@@ -1,4 +1,4 @@
-package jacquard_test
+package test
 
 import (
 	"encoding/json"
@@ -8,7 +8,7 @@ import (
 	"github.com/open-and-sustainable/jacquard"
 )
 
-func ExampleSchema() {
+func Example_schema() {
 	schema, err := jacquard.Schema("input")
 	if err != nil {
 		log.Fatal(err)
@@ -17,7 +17,7 @@ func ExampleSchema() {
 	// Output: true
 }
 
-func ExampleSchemaTypes() {
+func Example_schemaTypes() {
 	fmt.Println(jacquard.SchemaTypes())
 	// Output: [input output funnel_input funnel_output]
 }

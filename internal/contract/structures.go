@@ -1,4 +1,5 @@
-package jacquard
+// Package contract defines document, claim, evidence, and population audit data.
+package contract
 
 import "encoding/json"
 

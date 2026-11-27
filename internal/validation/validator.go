@@ -1,4 +1,5 @@
-package jacquard
+// Package validation validates JSON interfaces and caller-supplied schemas.
+package validation
 
 import (
 	"bytes"
@@ -10,6 +11,8 @@ import (
 	"strings"
 	"unicode/utf8"
 
+	"github.com/open-and-sustainable/jacquard/internal/contract"
+
 	"github.com/santhosh-tekuri/jsonschema/v6"
 	"github.com/santhosh-tekuri/jsonschema/v6/kind"
 	"golang.org/x/text/language"
@@ -20,7 +23,7 @@ import (
 // Use errors.As to distinguish these findings from schema/configuration errors.
 type Error struct {
 	// Issues are sorted by path, code, then message.
-	Issues []Issue
+	Issues []contract.Issue
 }
 
 // Error returns the findings as a human-readable message in their sorted order.
@@ -120,10 +123,10 @@ func Validate(instance, kind string) error {
 // The instance is decoded first; malformed instance JSON returns a finding before
 // schema compilation. File/network loading is disabled. This function checks only
 // constraints expressed in the supplied schema, not claim-rule semantics.
-func ValidateJSON(instance, schema []byte) ([]Issue, error) {
+func ValidateJSON(instance, schema []byte) ([]contract.Issue, error) {
 	value, err := decode(instance)
 	if err != nil {
-		return []Issue{{Code: "invalid_json", Path: "#", Message: "input must be one UTF-8 JSON value"}}, nil
+		return []contract.Issue{{Code: "invalid_json", Path: "#", Message: "input must be one UTF-8 JSON value"}}, nil
 	}
 	schemaValue, err := decode(schema)
 	if err != nil {
@@ -151,13 +154,13 @@ func ValidateJSON(instance, schema []byte) ([]Issue, error) {
 	}
 	err = compiled.Validate(value)
 	if err == nil {
-		return []Issue{}, nil
+		return []contract.Issue{}, nil
 	}
 	var invalid *jsonschema.ValidationError
 	if !errors.As(err, &invalid) {
 		return nil, fmt.Errorf("validate JSON: %w", err)
 	}
-	issues := []Issue{}
+	issues := []contract.Issue{}
 	printer := message.NewPrinter(language.English)
 	var collect func(*jsonschema.ValidationError)
 	collect = func(finding *jsonschema.ValidationError) {
@@ -174,19 +177,19 @@ func ValidateJSON(instance, schema []byte) ([]Issue, error) {
 		}
 		switch detail := finding.ErrorKind.(type) {
 		case *kind.FalseSchema:
-			issues = append(issues, Issue{Code: "schema_false", Path: path, Message: "false schema"})
+			issues = append(issues, contract.Issue{Code: "schema_false", Path: path, Message: "false schema"})
 		case *kind.Not:
-			issues = append(issues, Issue{Code: "schema_not", Path: path, Message: "not constraint failed"})
+			issues = append(issues, contract.Issue{Code: "schema_not", Path: path, Message: "not constraint failed"})
 		case *kind.Required:
 			for _, property := range detail.Missing {
-				issues = append(issues, Issue{Code: code, Path: path + "/" + escape(property), Message: fmt.Sprintf("missing property %q", property)})
+				issues = append(issues, contract.Issue{Code: code, Path: path + "/" + escape(property), Message: fmt.Sprintf("missing property %q", property)})
 			}
 		case *kind.AdditionalProperties:
 			for _, property := range detail.Properties {
-				issues = append(issues, Issue{Code: code, Path: path + "/" + escape(property), Message: fmt.Sprintf("additional property %q is not allowed", property)})
+				issues = append(issues, contract.Issue{Code: code, Path: path + "/" + escape(property), Message: fmt.Sprintf("additional property %q is not allowed", property)})
 			}
 		default:
-			issues = append(issues, Issue{Code: code, Path: path, Message: finding.ErrorKind.LocalizedString(printer)})
+			issues = append(issues, contract.Issue{Code: code, Path: path, Message: finding.ErrorKind.LocalizedString(printer)})
 		}
 	}
 	collect(invalid)

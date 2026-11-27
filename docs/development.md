@@ -12,27 +12,31 @@ patterns. The public Go API is collected in the root `jacquard` package:
 
 | Path | Purpose |
 | --- | --- |
-| Repository root | Public Go types, schema helpers, and validation functions |
-| `definitions/` | Embedded JSON schema data; no separate Go package |
+| `jacquard.go` | Public entry point: exported types and functions |
+| `internal/contract/` | Document, claim, report, and audit data types |
+| `internal/validation/` | Validation implementation, schema loading, and unit tests |
+| `internal/validation/schemas/` | Embedded JSON schema files |
 | `cmd/jacquard/` | JSON validation and schema-display CLI |
 | `utils/sharedlib/` | C exports and string ownership boundary |
-| `test/` | Synthetic integration fixtures and FFI smoke test |
+| `test/` | Public API examples, integration fixtures, and FFI smoke test |
 | `docs/` | User/integrator/contributor guide using the GreenDoc theme |
 | `.github/workflows/` | Go checks and native shared-library release builds |
 
-Packages include `doc.go` or a package comment. Unit tests sit beside their package;
-cross-package tests live in `test/`. The [checker contract](checker-contract.md)
+The root contains one Go source file, `jacquard.go`. It exposes the public API and
+delegates to the internal packages. Unit tests sit beside the implementation;
+public API examples and cross-package tests live in `test/`. The [checker contract](checker-contract.md)
 defines the document-checking and audit data formats and rules.
 
 ## Go documentation
 
-Following Alembica's documentation pattern, each package has a `doc.go` overview
-covering its purpose, supported interfaces, main components, behavior, and usage.
-Public declarations document their inputs, outputs, errors, and ownership where
-applicable. Go doc links connect related types and functions.
+The entry point's package comment covers purpose, supported interfaces, behavior,
+and usage. Public declarations document their inputs, outputs, errors, and ownership
+where applicable. Internal packages include package comments. Go doc links connect
+related types and functions.
 
-Usage examples live in `example_test.go` so `go test` compiles and executes them
-and pkg.go.dev can display them beside the relevant API. All examples are synthetic.
+Usage examples live under `test/` so `go test` compiles and executes them against
+the public API. The package comment also includes a usage example. All test data
+is synthetic.
 Inspect the rendered documentation locally without publishing:
 
 ```sh

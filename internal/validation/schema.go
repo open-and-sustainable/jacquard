@@ -1,11 +1,11 @@
-package jacquard
+package validation
 
 import (
 	"embed"
 	"fmt"
 )
 
-//go:embed definitions/*_schema.json
+//go:embed schemas/*_schema.json
 var schemas embed.FS
 
 // SchemaTypes returns the supported JSON interface names in a stable order.
@@ -27,7 +27,7 @@ func SchemaTypes() []string {
 func Schema(kind string) ([]byte, error) {
 	for _, supported := range SchemaTypes() {
 		if kind == supported {
-			return schemas.ReadFile("definitions/" + kind + "_schema.json")
+			return schemas.ReadFile("schemas/" + kind + "_schema.json")
 		}
 	}
 	return nil, fmt.Errorf("unsupported schema type %q", kind)

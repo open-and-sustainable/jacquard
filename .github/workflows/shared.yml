@@ -58,3 +58,4 @@ jobs:
           files: |
             dist/jacquard_${{ matrix.platform }}.${{ matrix.extension }}
             dist/jacquard_${{ matrix.platform }}.h
+            LICENSE

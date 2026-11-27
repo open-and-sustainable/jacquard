@@ -75,7 +75,7 @@ See [contribution guidelines](docs/CONTRIBUTING.md) and the
 
 ## License
 
-GNU Affero General Public License, version 3. See [LICENSE](LICENSE).
+Apache License 2.0. See [LICENSE](LICENSE).
 
 ## Citation
 

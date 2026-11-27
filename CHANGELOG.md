@@ -29,6 +29,9 @@ Releases use semantic versioning as in `MAJOR.MINOR.PATCH`.
 
 ### Changed
 
+- Keep the public entry point in `jacquard.go`; move implementation, data types,
+  schemas, and unit tests into internal packages and public API examples into `test/`.
+- License Jacquard under Apache-2.0 and include the license with shared-library releases.
 - Collect all public Go types, schema helpers, and validation functions in the
   root `github.com/open-and-sustainable/jacquard` package, so callers use one import.
 - Describe Jacquard as deterministic evidence checking for AI-assisted knowledge
