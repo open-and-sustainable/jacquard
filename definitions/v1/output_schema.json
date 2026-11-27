@@ -1,0 +1,372 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Jacquard v1 output",
+  "type": "object",
+  "properties": {
+    "metadata": {
+      "$ref": "#/definitions/metadata"
+    },
+    "jacquard_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "document_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rules": {
+      "type": "object",
+      "properties": {
+        "contract_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "contract_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "language_table": {
+          "type": "string",
+          "minLength": 1
+        },
+        "language_table_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "contract_id",
+        "contract_sha256",
+        "language_table",
+        "language_table_sha256"
+      ],
+      "additionalProperties": false
+    },
+    "format": {
+      "type": "object",
+      "properties": {
+        "schema_valid": {
+          "type": "boolean"
+        },
+        "valid": {
+          "type": "boolean"
+        },
+        "issues": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/issue"
+          }
+        }
+      },
+      "required": [
+        "schema_valid",
+        "valid",
+        "issues"
+      ],
+      "additionalProperties": false
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/claim_result"
+      }
+    },
+    "summary": {
+      "$ref": "#/definitions/summary"
+    }
+  },
+  "required": [
+    "metadata",
+    "jacquard_version",
+    "document_id",
+    "rules",
+    "format",
+    "claims",
+    "summary"
+  ],
+  "additionalProperties": false,
+  "definitions": {
+    "claim_result": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "pattern": "^#(?:/(?:[^~]|~[01])*)*$"
+        },
+        "kind": {
+          "enum": [
+            "text",
+            "category",
+            "count",
+            "amount",
+            "note"
+          ]
+        },
+        "status": {
+          "enum": [
+            "supported",
+            "not_checked",
+            "quote_not_in_text",
+            "value_not_in_quote"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "quote": {
+          "$ref": "#/definitions/quote_result"
+        },
+        "literal_counts": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "uniqueItems": true
+        },
+        "implied_counts": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "uniqueItems": true
+        },
+        "parsed_amount": {
+          "$ref": "#/definitions/parsed_amount"
+        },
+        "amount_parse_state": {
+          "enum": [
+            "parsed",
+            "unparsed",
+            "unsupported_currency",
+            "not_checked"
+          ]
+        },
+        "value_diagnosis": {
+          "enum": [
+            "as_written_elsewhere_in_text",
+            "as_written_not_in_text"
+          ]
+        }
+      },
+      "required": [
+        "path",
+        "kind",
+        "status"
+      ],
+      "additionalProperties": false
+    },
+    "issue": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "minLength": 1
+        },
+        "path": {
+          "type": "string",
+          "pattern": "^#(?:/(?:[^~]|~[01])*)*$"
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "code",
+        "path",
+        "message"
+      ],
+      "additionalProperties": false
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "const": "v1"
+        }
+      },
+      "required": [
+        "schemaVersion"
+      ],
+      "additionalProperties": false
+    },
+    "occurrence": {
+      "type": "object",
+      "properties": {
+        "byte_start": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "byte_end": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "char_start": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "char_end": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "byte_start",
+        "byte_end",
+        "char_start",
+        "char_end"
+      ],
+      "additionalProperties": false
+    },
+    "parsed_amount": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "unit": {
+          "const": "cents"
+        }
+      },
+      "required": [
+        "value",
+        "currency",
+        "unit"
+      ],
+      "additionalProperties": false
+    },
+    "quote_diagnosis": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "enum": [
+            "first_letter_case",
+            "ellipsis_gap",
+            "typography",
+            "whitespace",
+            "other"
+          ]
+        },
+        "pieces": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/occurrence"
+          }
+        },
+        "gaps": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "prefix": {
+          "type": "string"
+        },
+        "suffix": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind"
+      ],
+      "additionalProperties": false
+    },
+    "quote_result": {
+      "type": "object",
+      "properties": {
+        "exact": {
+          "type": "boolean"
+        },
+        "occurrences": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/occurrence"
+          }
+        },
+        "diagnosis": {
+          "$ref": "#/definitions/quote_diagnosis"
+        }
+      },
+      "required": [
+        "exact",
+        "occurrences"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "exact": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "occurrences": {
+                "minItems": 1
+              }
+            },
+            "not": {
+              "required": [
+                "diagnosis"
+              ]
+            }
+          },
+          "else": {
+            "required": [
+              "diagnosis"
+            ],
+            "properties": {
+              "occurrences": {
+                "maxItems": 0
+              }
+            }
+          }
+        }
+      ]
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "claims": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "supported": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "not_checked": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "quote_not_in_text": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "value_not_in_quote": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "claims",
+        "supported",
+        "not_checked",
+        "quote_not_in_text",
+        "value_not_in_quote"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

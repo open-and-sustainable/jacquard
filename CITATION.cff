@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+title: "jacquard - Open Science Software for Deterministic Evidence Checking of Extracted Claims."
+message: >-
+  If you use jacquard, please cite it using the metadata in this file.
+type: software
+authors:
+  - given-names: Riccardo
+    family-names: Boero
+    email: ribo@nilu.no
+    orcid: "https://orcid.org/0000-0002-7468-9096"
+    affiliation: NILU
+repository-code: "https://github.com/open-and-sustainable/jacquard"
+url: "https://open-and-sustainable.github.io/jacquard/"
+abstract: >-
+  jacquard is being developed as a deterministic library for checking claims
+  extracted from documents against the documents themselves. Its first-release
+  contract covers schema and claim-rule validation, exact quote location and
+  mismatch diagnosis, text and numeric value support, per-claim evidence reports,
+  and an audit of filtering by item size. The current implementation provides
+  versioned JSON interfaces and interface validation for Go, command-line, and
+  C-shared library callers. All acceptance material is synthetic.
+keywords:
+  - Evidence synthesis
+  - Information extraction
+  - Validation
+  - Open Source
+  - Open Science
+license: AGPL-3.0-only

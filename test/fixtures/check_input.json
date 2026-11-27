@@ -1,0 +1,307 @@
+{
+  "metadata": {
+    "schemaVersion": "v1"
+  },
+  "document": {
+    "document_id": "synthetic-study-01",
+    "language": "en",
+    "text": "Cedar Lab enrolled three volunteers. Its budget was $1.5 million. The pilot was held in Room A."
+  },
+  "extraction": {
+    "quotes": {
+      "location": "The pilot was held in Room A."
+    },
+    "records": [
+      {
+        "place": {
+          "as_written": "Room A",
+          "evidence_ref": "location"
+        },
+        "method": {
+          "type": "pilot",
+          "as_written": "pilot",
+          "evidence": "The pilot was held in Room A."
+        },
+        "participants": {
+          "value": 3,
+          "qualification": "exact",
+          "evidence": "Cedar Lab enrolled three volunteers."
+        },
+        "funding": {
+          "amount_as_written": "$1.5 million",
+          "currency_as_written": "$",
+          "qualification": "exact",
+          "evidence": "Its budget was $1.5 million."
+        },
+        "notes": [
+          {
+            "kind": "unspecified_scope",
+            "evidence": "Its budget was $1.5 million."
+          }
+        ]
+      }
+    ]
+  },
+  "contract": {
+    "id": "synthetic-study-v1",
+    "language_table": "en-v1",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "required": [
+        "records"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "quotes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "records": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "place": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "as_written": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "evidence": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "evidence_ref": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              },
+              "method": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "type": {
+                    "enum": [
+                      null,
+                      "pilot",
+                      "survey"
+                    ]
+                  },
+                  "as_written": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "evidence": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "evidence_ref": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              },
+              "participants": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "integer",
+                      "null"
+                    ],
+                    "minimum": 0
+                  },
+                  "upper_value": {
+                    "type": [
+                      "integer",
+                      "null"
+                    ],
+                    "minimum": 0
+                  },
+                  "qualification": {
+                    "enum": [
+                      null,
+                      "exact",
+                      "approximate",
+                      "at_least",
+                      "more_than",
+                      "at_most",
+                      "less_than",
+                      "range",
+                      "unquantified"
+                    ]
+                  },
+                  "causal_scope": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "evidence": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "evidence_ref": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              },
+              "funding": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "amount_as_written": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "currency_as_written": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "scope_as_written": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "qualification": {
+                    "enum": [
+                      null,
+                      "exact",
+                      "approximate",
+                      "at_least",
+                      "more_than",
+                      "at_most",
+                      "less_than",
+                      "unquantified"
+                    ]
+                  },
+                  "evidence": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "evidence_ref": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              },
+              "notes": {
+                "type": "array",
+                "items": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "enum": [
+                        "unspecified_scope"
+                      ]
+                    },
+                    "evidence": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "evidence_ref": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "claims": [
+      {
+        "path": "#/records/*/place",
+        "kind": "text"
+      },
+      {
+        "path": "#/records/*/method",
+        "kind": "category"
+      },
+      {
+        "path": "#/records/*/participants",
+        "kind": "count",
+        "field_words": [
+          "volunteers",
+          "participants"
+        ],
+        "count_support": "literal"
+      },
+      {
+        "path": "#/records/*/funding",
+        "kind": "amount"
+      },
+      {
+        "path": "#/records/*/notes/*",
+        "kind": "note"
+      }
+    ],
+    "record_rules": [
+      {
+        "path": "#/records/*",
+        "any_evidence": [
+          "#/participants",
+          "#/funding",
+          "#/notes/*"
+        ]
+      }
+    ]
+  }
+}

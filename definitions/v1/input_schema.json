@@ -1,0 +1,196 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Jacquard v1 input",
+  "type": "object",
+  "properties": {
+    "metadata": {
+      "$ref": "#/definitions/metadata"
+    },
+    "document": {
+      "type": "object",
+      "properties": {
+        "document_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "language": {
+          "type": "string",
+          "minLength": 1
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "document_id",
+        "language",
+        "text"
+      ],
+      "additionalProperties": false
+    },
+    "extraction": {},
+    "contract": {
+      "$ref": "#/definitions/contract"
+    }
+  },
+  "required": [
+    "metadata",
+    "document",
+    "extraction",
+    "contract"
+  ],
+  "additionalProperties": false,
+  "definitions": {
+    "contract": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "language_table": {
+          "type": "string",
+          "minLength": 1
+        },
+        "schema": {
+          "type": [
+            "object",
+            "boolean"
+          ]
+        },
+        "claims": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string",
+                "pattern": "^#(?:/(?:[^~]|~[01])*)*$"
+              },
+              "kind": {
+                "enum": [
+                  "text",
+                  "category",
+                  "count",
+                  "amount",
+                  "note"
+                ]
+              },
+              "parts": {
+                "type": "object",
+                "propertyNames": {
+                  "enum": [
+                    "as_written",
+                    "type",
+                    "value",
+                    "upper_value",
+                    "qualification",
+                    "causal_scope",
+                    "amount_as_written",
+                    "currency_as_written",
+                    "scope_as_written",
+                    "kind",
+                    "evidence",
+                    "evidence_ref"
+                  ]
+                },
+                "additionalProperties": {
+                  "type": "string",
+                  "pattern": "^#(?:/(?:[^~]|~[01])*)*$"
+                }
+              },
+              "required_parts": {
+                "type": "array",
+                "items": {
+                  "enum": [
+                    "as_written",
+                    "type",
+                    "value",
+                    "upper_value",
+                    "qualification",
+                    "causal_scope",
+                    "amount_as_written",
+                    "currency_as_written",
+                    "scope_as_written",
+                    "kind",
+                    "evidence",
+                    "evidence_ref"
+                  ]
+                },
+                "uniqueItems": true
+              },
+              "field_words": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
+              "count_support": {
+                "enum": [
+                  "literal",
+                  "literal_or_implied"
+                ]
+              }
+            },
+            "required": [
+              "path",
+              "kind"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "record_rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string",
+                "pattern": "^#(?:/(?:[^~]|~[01])*)*$"
+              },
+              "any_evidence": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^#(?:/(?:[^~]|~[01])*)*$"
+                },
+                "minItems": 1,
+                "uniqueItems": true
+              }
+            },
+            "required": [
+              "path",
+              "any_evidence"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "quotes_path": {
+          "type": "string",
+          "pattern": "^#(?:/(?:[^~]|~[01])*)*$"
+        }
+      },
+      "required": [
+        "id",
+        "language_table",
+        "schema",
+        "claims"
+      ],
+      "additionalProperties": false
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "const": "v1"
+        }
+      },
+      "required": [
+        "schemaVersion"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "metadata": {
+    "schemaVersion": "v1"
+  },
+  "jacquard_version": "0.1.0-dev",
+  "cutoffs": {
+    "size": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ]
+  },
+  "cells": [
+    {
+      "stage": "input",
+      "field": "size",
+      "bucket": "missing",
+      "count": 1
+    },
+    {
+      "stage": "input",
+      "field": "size",
+      "bucket": "unparsed",
+      "count": 1
+    },
+    {
+      "stage": "input",
+      "field": "size",
+      "bucket": "zero",
+      "count": 1
+    },
+    {
+      "stage": "input",
+      "field": "size",
+      "bucket": "positive_decile_01",
+      "count": 2
+    },
+    {
+      "stage": "input",
+      "field": "size",
+      "bucket": "positive_decile_02",
+      "count": 0
+    },
+    {
+      "stage": "input",
+      "field": "size",
+      "bucket": "positive_decile_03",
+      "count": 0
+    },
+    {
+      "stage": "input",
+      "field": "size",
+      "bucket": "positive_decile_04",
+      "count": 0
+    },
+    {
+      "stage": "input",
+      "field": "size",
+      "bucket": "positive_decile_05",
+      "count": 0
+    },
+    {
+      "stage": "input",
+      "field": "size",
+      "bucket": "positive_decile_06",
+      "count": 0
+    },
+    {
+      "stage": "input",
+      "field": "size",
+      "bucket": "positive_decile_07",
+      "count": 0
+    },
+    {
+      "stage": "input",
+      "field": "size",
+      "bucket": "positive_decile_08",
+      "count": 0
+    },
+    {
+      "stage": "input",
+      "field": "size",
+      "bucket": "positive_decile_09",
+      "count": 0
+    },
+    {
+      "stage": "input",
+      "field": "size",
+      "bucket": "positive_decile_10",
+      "count": 2
+    },
+    {
+      "stage": "retained",
+      "field": "size",
+      "bucket": "missing",
+      "count": 0
+    },
+    {
+      "stage": "retained",
+      "field": "size",
+      "bucket": "unparsed",
+      "count": 0
+    },
+    {
+      "stage": "retained",
+      "field": "size",
+      "bucket": "zero",
+      "count": 1
+    },
+    {
+      "stage": "retained",
+      "field": "size",
+      "bucket": "positive_decile_01",
+      "count": 1
+    },
+    {
+      "stage": "retained",
+      "field": "size",
+      "bucket": "positive_decile_02",
+      "count": 0
+    },
+    {
+      "stage": "retained",
+      "field": "size",
+      "bucket": "positive_decile_03",
+      "count": 0
+    },
+    {
+      "stage": "retained",
+      "field": "size",
+      "bucket": "positive_decile_04",
+      "count": 0
+    },
+    {
+      "stage": "retained",
+      "field": "size",
+      "bucket": "positive_decile_05",
+      "count": 0
+    },
+    {
+      "stage": "retained",
+      "field": "size",
+      "bucket": "positive_decile_06",
+      "count": 0
+    },
+    {
+      "stage": "retained",
+      "field": "size",
+      "bucket": "positive_decile_07",
+      "count": 0
+    },
+    {
+      "stage": "retained",
+      "field": "size",
+      "bucket": "positive_decile_08",
+      "count": 0
+    },
+    {
+      "stage": "retained",
+      "field": "size",
+      "bucket": "positive_decile_09",
+      "count": 0
+    },
+    {
+      "stage": "retained",
+      "field": "size",
+      "bucket": "positive_decile_10",
+      "count": 0
+    }
+  ]
+}

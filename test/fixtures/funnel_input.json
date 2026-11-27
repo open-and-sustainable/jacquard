@@ -1,0 +1,111 @@
+{
+  "metadata": {
+    "schemaVersion": "v1"
+  },
+  "stages": [
+    "input",
+    "retained"
+  ],
+  "reference_values": {
+    "size": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ]
+  },
+  "items": [
+    {
+      "item_id": "a",
+      "values": {
+        "size": [
+          {
+            "state": "parsed",
+            "value": 1
+          }
+        ]
+      },
+      "passed_stages": [
+        "input",
+        "retained"
+      ]
+    },
+    {
+      "item_id": "b",
+      "values": {
+        "size": [
+          {
+            "state": "parsed",
+            "value": 10
+          }
+        ]
+      },
+      "passed_stages": [
+        "input"
+      ]
+    },
+    {
+      "item_id": "c",
+      "values": {},
+      "passed_stages": [
+        "input"
+      ]
+    },
+    {
+      "item_id": "d",
+      "values": {
+        "size": [
+          {
+            "state": "unparsed"
+          }
+        ]
+      },
+      "passed_stages": [
+        "input"
+      ]
+    },
+    {
+      "item_id": "e",
+      "values": {
+        "size": [
+          {
+            "state": "parsed",
+            "value": 0
+          }
+        ]
+      },
+      "passed_stages": [
+        "input",
+        "retained"
+      ]
+    },
+    {
+      "item_id": "f",
+      "values": {
+        "size": [
+          {
+            "state": "parsed",
+            "value": 1
+          },
+          {
+            "state": "parsed",
+            "value": 1
+          },
+          {
+            "state": "parsed",
+            "value": 10
+          }
+        ]
+      },
+      "passed_stages": [
+        "input"
+      ]
+    }
+  ]
+}

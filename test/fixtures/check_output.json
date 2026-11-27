@@ -1,0 +1,116 @@
+{
+  "metadata": {
+    "schemaVersion": "v1"
+  },
+  "jacquard_version": "0.1.0-dev",
+  "document_id": "synthetic-study-01",
+  "rules": {
+    "contract_id": "synthetic-study-v1",
+    "contract_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "language_table": "en-v1",
+    "language_table_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+  },
+  "format": {
+    "schema_valid": true,
+    "valid": true,
+    "issues": []
+  },
+  "claims": [
+    {
+      "path": "#/records/0/place",
+      "kind": "text",
+      "status": "supported",
+      "quote": {
+        "exact": true,
+        "occurrences": [
+          {
+            "byte_start": 66,
+            "byte_end": 95,
+            "char_start": 66,
+            "char_end": 95
+          }
+        ]
+      }
+    },
+    {
+      "path": "#/records/0/method",
+      "kind": "category",
+      "status": "supported",
+      "quote": {
+        "exact": true,
+        "occurrences": [
+          {
+            "byte_start": 66,
+            "byte_end": 95,
+            "char_start": 66,
+            "char_end": 95
+          }
+        ]
+      }
+    },
+    {
+      "path": "#/records/0/participants",
+      "kind": "count",
+      "status": "supported",
+      "quote": {
+        "exact": true,
+        "occurrences": [
+          {
+            "byte_start": 0,
+            "byte_end": 36,
+            "char_start": 0,
+            "char_end": 36
+          }
+        ]
+      },
+      "literal_counts": [
+        3
+      ]
+    },
+    {
+      "path": "#/records/0/funding",
+      "kind": "amount",
+      "status": "supported",
+      "quote": {
+        "exact": true,
+        "occurrences": [
+          {
+            "byte_start": 37,
+            "byte_end": 65,
+            "char_start": 37,
+            "char_end": 65
+          }
+        ]
+      },
+      "amount_parse_state": "parsed",
+      "parsed_amount": {
+        "value": 150000000,
+        "currency": "USD",
+        "unit": "cents"
+      }
+    },
+    {
+      "path": "#/records/0/notes/0",
+      "kind": "note",
+      "status": "supported",
+      "quote": {
+        "exact": true,
+        "occurrences": [
+          {
+            "byte_start": 37,
+            "byte_end": 65,
+            "char_start": 37,
+            "char_end": 65
+          }
+        ]
+      }
+    }
+  ],
+  "summary": {
+    "claims": 5,
+    "supported": 5,
+    "not_checked": 0,
+    "quote_not_in_text": 0,
+    "value_not_in_quote": 0
+  }
+}

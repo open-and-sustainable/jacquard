@@ -1,0 +1,60 @@
+name: Build Shared Libraries
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Shared library (${{ matrix.platform }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            platform: linux_amd64
+            extension: so
+          - os: ubuntu-24.04-arm
+            platform: linux_arm64
+            extension: so
+          - os: macos-15-intel
+            platform: darwin_amd64
+            extension: dylib
+          - os: macos-latest
+            platform: darwin_arm64
+            extension: dylib
+          - os: windows-latest
+            platform: windows_amd64
+            extension: dll
+    runs-on: ${{ matrix.os }}
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Build native shared library and header
+        shell: bash
+        run: |
+          mkdir -p dist
+          go mod download
+          go build -buildmode=c-shared -o dist/jacquard_${{ matrix.platform }}.${{ matrix.extension }} ./utils/sharedlib
+        env:
+          CGO_ENABLED: "1"
+      - name: Test C exports before upload
+        shell: bash
+        run: python test/shared_library_test.py dist/jacquard_${{ matrix.platform }}.${{ matrix.extension }}
+      - name: Upload library and generated header
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/jacquard_${{ matrix.platform }}.${{ matrix.extension }}
+            dist/jacquard_${{ matrix.platform }}.h

@@ -1,0 +1,21 @@
+jacquard-specification*.md
+
+# Go builds and workspaces
+/bin/
+/dist/
+*.exe
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+go.work
+go.work.sum
+
+# Local environment and documentation build
+.env
+/docs/_site/
+/docs/.jekyll-cache/
+/docs/.sass-cache/
+/docs/.bundle/
+__pycache__/

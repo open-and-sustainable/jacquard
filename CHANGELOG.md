@@ -1,0 +1,32 @@
+# `jacquard` Changelog
+
+All notable changes to this project will be documented in this file.
+Releases use semantic versioning as in `MAJOR.MINOR.PATCH`.
+
+## Change entries
+
+- Added: New features.
+- Changed: Changes in existing functionality.
+- Deprecated: Once-stable features scheduled for removal.
+- Removed: Removed features.
+- Fixed: Bug fixes.
+- Security: Vulnerability fixes.
+
+## [Unreleased]
+
+### Added
+
+- First-release contract for contract validation, quote fidelity, value support,
+  evidence reporting, and a separate filter-size audit.
+- Go module with versioned JSON interfaces, arbitrary-precision interface validators,
+  a validation CLI, and C exports. Checking and audit engines are not yet implemented.
+- Synthetic contract fixtures, package and integration tests, and shared-library smoke tests.
+- GreenDoc user, integrator, and contributor guides with indigo and teal colors;
+  project artwork pending.
+- Citation metadata and citation sections in the README and documentation home page.
+- Go package overviews, API documentation, and executable usage examples.
+
+### Changed
+
+- Collect all public Go types, schema helpers, and validation functions in the
+  root `github.com/open-and-sustainable/jacquard` package, so callers use one import.

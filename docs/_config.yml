@@ -1,0 +1,37 @@
+remote_theme: open-and-sustainable/greendoc_theme
+title: "jacquard"
+description: "Deterministic evidence checking for extracted claims"
+baseurl: "/jacquard"
+url: "https://open-and-sustainable.github.io"
+github_repo: "https://github.com/open-and-sustainable/jacquard"
+plugins:
+  - jekyll-remote-theme
+  - jekyll-relative-links
+relative_links:
+  enabled: true
+
+# Add logo and favicon paths here when the project artwork is supplied.
+nav_links:
+  - name: "/Users/Main Features"
+    url: "/main-features.html"
+  - name: "/Users/Getting Started"
+    url: "/getting-started.html"
+  - name: "/Users/Help & Resources"
+    url: "/help-resources.html"
+  - name: "/Integrators/Checker Contract"
+    url: "/checker-contract.html"
+  - name: "/Integrators/Schemas & Validation"
+    url: "/schemas-validation.html"
+  - name: "/Integrators/Command Line"
+    url: "/command-line.html"
+  - name: "/Integrators/C-Shared Library"
+    url: "/cshared-library.html"
+  - name: "/Contributors/Development"
+    url: "/development.html"
+  - name: "/Contributors/Research & Development"
+    url: "/research-development.html"
+
+nav_background_color: "#312e81"
+nav_hover_color: "#0f766e"
+nav_link_color: "#ffffff"
+toc-hover-color: "#0f766e"
