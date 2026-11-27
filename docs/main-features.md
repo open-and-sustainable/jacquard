@@ -5,7 +5,8 @@ layout: default
 
 # Main features
 
-These are the five first-release capabilities. Their normative behavior is in the
+These are the five first-release capabilities for AI-assisted knowledge synthesis.
+Their normative behavior is in the
 [checker contract](checker-contract.md); checking engines are still to be implemented.
 
 | Capability | Question answered | Result |

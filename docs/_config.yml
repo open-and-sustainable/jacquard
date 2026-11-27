@@ -1,6 +1,6 @@
 remote_theme: open-and-sustainable/greendoc_theme
 title: "Jacquard"
-description: "Deterministic evidence checking for knowledge synthesis."
+description: "Deterministic evidence checking for AI-assisted knowledge synthesis."
 baseurl: "/jacquard"
 url: "https://open-and-sustainable.github.io"
 github_repo: "https://github.com/open-and-sustainable/jacquard"

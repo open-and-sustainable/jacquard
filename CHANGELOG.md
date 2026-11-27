@@ -30,7 +30,8 @@ Releases use semantic versioning as in `MAJOR.MINOR.PATCH`.
 
 - Collect all public Go types, schema helpers, and validation functions in the
   root `github.com/open-and-sustainable/jacquard` package, so callers use one import.
-- Describe Jacquard as deterministic evidence checking for knowledge synthesis,
+- Describe Jacquard as deterministic evidence checking for AI-assisted knowledge
+  synthesis across the README, documentation, Go package overview, and citations,
   with a plain project name in headings and citations.
 
 ### Fixed

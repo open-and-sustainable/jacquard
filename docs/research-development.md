@@ -5,8 +5,8 @@ layout: default
 
 # Research and development
 
-Jacquard supports reproducible evidence synthesis by keeping documentary support
-checks explicit, deterministic, and independent of the extraction method.
+Jacquard supports reproducible, AI-assisted knowledge synthesis through explicit,
+deterministic checks of documentary support, independent of the extraction method.
 
 The first release must implement all five capabilities in the
 [checker contract](checker-contract.md). Development proceeds from the interface

@@ -1,11 +1,11 @@
 # Jacquard
 
-Deterministic evidence checking for knowledge synthesis.
+Deterministic evidence checking for AI-assisted knowledge synthesis.
 
 ## About
 
-Jacquard is open science software for knowledge synthesis. It checks extracted
-claims against the exact source text supplied to their extractor.
+Jacquard is open science software for AI-assisted knowledge synthesis. It checks
+extracted claims against the exact source text supplied to their extractor.
 The first release covers contract validation, quote fidelity, value support,
 evidence reporting, and a separate audit of filtering by item size.
 
@@ -79,7 +79,7 @@ GNU Affero General Public License, version 3. See [LICENSE](LICENSE).
 
 ## Citation
 
-> Boero, R. Jacquard - Deterministic evidence checking for knowledge synthesis. Software under development. [GitHub](https://github.com/open-and-sustainable/jacquard).
+> Boero, R. Jacquard - Deterministic evidence checking for AI-assisted knowledge synthesis. Software under development. [GitHub](https://github.com/open-and-sustainable/jacquard).
 
 Machine-readable citation metadata is in [CITATION.cff](CITATION.cff). A Jacquard
 DOI and version-specific citation will be added when a release is archived.
