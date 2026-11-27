@@ -4,15 +4,14 @@ Deterministic evidence checking for AI-assisted knowledge synthesis.
 
 ## About
 
-Jacquard is open science software for AI-assisted knowledge synthesis. It checks
-extracted claims against the exact source text supplied to their extractor.
-The first release covers contract validation, quote fidelity, value support,
-evidence reporting, and a separate audit of filtering by item size.
+Jacquard is open science software for deterministic evidence checking in
+AI-assisted knowledge synthesis. It provides versioned contracts for extracted
+claims, their source documents, and evidence reports, with JSON validation through
+a Go library, command-line tool, and C shared library.
 
-**Development status:** the first-release behavior is defined in the
-[checker contract](docs/checker-contract.md). This repository currently implements
-the JSON interface definitions, schema validation, a validation CLI, and C exports.
-The document checker and size audit engines are not implemented yet.
+The [checker contract](docs/checker-contract.md) defines output structure, quote
+fidelity, text and numeric support, per-claim evidence reports, and size-based
+filter audits.
 
 ## Installation (Go)
 
@@ -24,7 +23,7 @@ go test ./...
 go build -o bin/jacquard ./cmd/jacquard
 ```
 
-Use the current interface validator:
+Validate a request:
 
 ```sh
 go run ./cmd/jacquard validate -type input < test/fixtures/check_input.json
@@ -45,16 +44,15 @@ For example, call `jacquard.ValidateInput(inputJSON, "v1")` or
 ## Documentation
 
 - [User guide](docs/index.md)
-- [First-release checker contract](docs/checker-contract.md)
+- [Checker contract](docs/checker-contract.md)
 - [Schemas and validation](docs/schemas-validation.md)
 - [C-shared library](docs/cshared-library.md)
 - [Development and testing](docs/development.md)
 - [API reference](https://pkg.go.dev/github.com/open-and-sustainable/jacquard)
 - [Changelog](CHANGELOG.md)
 
-The documentation site is configured for
+Documentation:
 [open-and-sustainable.github.io/jacquard](https://open-and-sustainable.github.io/jacquard/).
-The site and pkg.go.dev reference become available after publication and indexing.
 
 The documentation and development patterns follow
 [Alembica](https://github.com/open-and-sustainable/alembica): versioned JSON schemas,
@@ -63,9 +61,9 @@ integration tests. Jacquard's public Go API lives in the root package.
 
 ## Testing
 
-All documents, extractions, populations, and expected findings in tests are synthetic.
-Tests require no models, credentials, external corpora, or network calls. Go downloads
-pinned build dependencies during setup; the test suite itself runs offline.
+The test suite uses synthetic documents, extractions, populations, and expected
+findings. Tests require no models, credentials, external corpora, or network calls.
+Go downloads pinned build dependencies during setup; the test suite runs offline.
 
 ## Authors and contributions
 
@@ -79,7 +77,6 @@ GNU Affero General Public License, version 3. See [LICENSE](LICENSE).
 
 ## Citation
 
-> Boero, R. Jacquard - Deterministic evidence checking for AI-assisted knowledge synthesis. Software under development. [GitHub](https://github.com/open-and-sustainable/jacquard).
+> Boero, R. Jacquard - Deterministic evidence checking for AI-assisted knowledge synthesis. Software. [GitHub](https://github.com/open-and-sustainable/jacquard).
 
-Machine-readable citation metadata is in [CITATION.cff](CITATION.cff). A Jacquard
-DOI and version-specific citation will be added when a release is archived.
+Machine-readable citation metadata is in [CITATION.cff](CITATION.cff).

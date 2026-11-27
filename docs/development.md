@@ -14,15 +14,15 @@ patterns. The public Go API is collected in the root `jacquard` package:
 | --- | --- |
 | Repository root | Public Go types, schema helpers, and validation functions |
 | `definitions/v1/` | Embedded versioned JSON schema data; no separate Go package |
-| `cmd/jacquard/` | Current validation CLI; future checker/audit command host |
+| `cmd/jacquard/` | JSON validation and schema-display CLI |
 | `utils/sharedlib/` | C exports and string ownership boundary |
 | `test/` | Synthetic integration fixtures and FFI smoke test |
 | `docs/` | User/integrator/contributor guide using the GreenDoc theme |
 | `.github/workflows/` | Go checks and native shared-library release builds |
 
 Packages include `doc.go` or a package comment. Unit tests sit beside their package;
-cross-package tests live in `test/`. The checker and audit engines have not yet
-been implemented. Their behavior is fixed by the [checker contract](checker-contract.md).
+cross-package tests live in `test/`. The [checker contract](checker-contract.md)
+defines the document-checking and audit data formats and rules.
 
 ## Go documentation
 
@@ -61,18 +61,20 @@ minimum rather than a separately maintained version number.
 
 ## Synthetic testing
 
-All test documents and populations are invented in this repository. No credentials,
-model answers, private data, or external corpus are required. The
-[testing guide](testing.md) distinguishes the checks implemented today from the
-acceptance cases needed before the first release.
+The test suite uses synthetic documents and populations stored in this repository.
+It runs without credentials, model answers, private data, or an external corpus.
+The [testing guide](testing.md) lists executable coverage and contract scenarios.
 
 ## Documentation
 
 `docs/_config.yml` uses the same `open-and-sustainable/greendoc_theme` theme and
 user/integrator/contributor navigation as Alembica. Jacquard uses indigo navigation
-and teal interaction colors. Logo and favicon configuration will be added when
-project artwork is available. The docs can be served by GitHub Pages from `docs/`
-once the repository's Pages settings are enabled; this setup does not publish them.
+and indigo interaction colors. The site title, description, navigation, colors, and
+artwork paths are configured in that file.
+
+The [Documentation Pages workflow](publishing.md) builds `docs/` from `main`
+and publishes the generated artifact to GitHub Pages. The local layout makes
+logo and favicon rendering conditional on the presence of their asset files.
 
 ## Changelog and citation metadata
 

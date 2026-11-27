@@ -49,12 +49,11 @@ Run the equivalent CLI:
 go run ./cmd/jacquard validate -type input < test/fixtures/check_input.json
 ```
 
-Validation confirms the JSON interface shape. It does not check evidence. The
-planned `Check` and `AuditFunnel` operations are specified in the
-[checker contract](checker-contract.md).
+The example validates the request's JSON structure. The
+[checker contract](checker-contract.md) defines claim and evidence-report rules.
 
 ## Next steps
 
 Read [schemas and validation](schemas-validation.md) for the distinction between
 request validation and extraction validation, and [C-shared library](cshared-library.md)
-for current exports and memory ownership.
+for exported functions and memory ownership.

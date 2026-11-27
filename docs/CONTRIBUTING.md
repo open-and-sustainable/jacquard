@@ -1,3 +1,8 @@
+---
+title: Contributing
+layout: default
+---
+
 # Contributing to Jacquard
 
 Use Go 1.26 or later, clone the repository, and run `go mod download` followed by
@@ -6,7 +11,7 @@ Use Go 1.26 or later, clone the repository, and run `go mod download` followed b
 Follow the [checker contract](checker-contract.md), document exported APIs, format
 Go code with `gofmt`, and include focused tests for changed behavior. Unit tests live
 beside their packages; integration fixtures and cross-interface tests live in `test/`.
-All data must be synthetic. Use fixed seeds for generated cases and never require
+All test data must be synthetic. Use fixed seeds for generated cases and never require
 models, credentials, downloaded test data, or a private dataset.
 
 Follow Alembica's documentation pattern: package overviews in `doc.go`, function

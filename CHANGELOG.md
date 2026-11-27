@@ -1,6 +1,6 @@
 # Jacquard Changelog
 
-All notable changes to this project will be documented in this file.
+This file records notable changes to Jacquard.
 Releases use semantic versioning as in `MAJOR.MINOR.PATCH`.
 
 ## Change entries
@@ -16,15 +16,16 @@ Releases use semantic versioning as in `MAJOR.MINOR.PATCH`.
 
 ### Added
 
-- First-release contract for contract validation, quote fidelity, value support,
+- Checker contract for contract validation, quote fidelity, value support,
   evidence reporting, and a separate filter-size audit.
 - Go module with versioned JSON interfaces, arbitrary-precision interface validators,
-  a validation CLI, and C exports. Checking and audit engines are not yet implemented.
+  a validation CLI, and C exports.
 - Synthetic contract fixtures, package and integration tests, and shared-library smoke tests.
-- GreenDoc user, integrator, and contributor guides with indigo and teal colors;
-  project artwork pending.
+- GreenDoc user, integrator, and contributor guides with an indigo palette.
 - Citation metadata and citation sections in the README and documentation home page.
 - Go package overviews, API documentation, and executable usage examples.
+- GitHub Actions build and deployment of the documentation from `docs/` on `main`.
+- Documentation asset directories and conditional logo/favicon rendering.
 
 ### Changed
 
@@ -33,6 +34,8 @@ Releases use semantic versioning as in `MAJOR.MINOR.PATCH`.
 - Describe Jacquard as deterministic evidence checking for AI-assisted knowledge
   synthesis across the README, documentation, Go package overview, and citations,
   with a plain project name in headings and citations.
+- Use direct capability descriptions throughout the documentation and keep
+  synthetic-data statements specific to the test suite.
 
 ### Fixed
 

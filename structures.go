@@ -132,7 +132,7 @@ type Summary struct {
 	ValueNotInQuote int `json:"value_not_in_quote"`
 }
 
-// Output is the intended first-release document checking report.
+// Output represents a document-checking report.
 type Output struct {
 	Metadata        Metadata      `json:"metadata"`
 	JacquardVersion string        `json:"jacquard_version"`

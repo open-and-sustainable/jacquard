@@ -12,8 +12,7 @@
 //
 // Exit status 0 indicates successful validation or schema display, 1 indicates an
 // invalid JSON instance, and 2 indicates an invocation, configuration, or I/O error.
-// Usage diagnostics go to stderr. Validation checks interface shapes; the planned
-// document checker and audit commands are not yet implemented.
+// Usage diagnostics go to stderr. Validation checks request and report structures.
 //
 // # Example usage
 //

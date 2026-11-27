@@ -5,9 +5,8 @@ layout: default
 
 # Main features
 
-These are the five first-release capabilities for AI-assisted knowledge synthesis.
-Their normative behavior is in the
-[checker contract](checker-contract.md); checking engines are still to be implemented.
+The [checker contract](checker-contract.md) defines five areas of evidence checking
+for AI-assisted knowledge synthesis:
 
 | Capability | Question answered | Result |
 | --- | --- | --- |
@@ -21,5 +20,6 @@ Contracts describe caller-defined fields. The same core supports a participant
 count, an inventory count, a place name, or an amount without embedding a project's
 subject matter in its rules.
 
-The current implementation validates the request and report interfaces. It does
-not yet perform these five checks. See [getting started](getting-started.md).
+The Go library, CLI, and C exports validate the document-checking and audit request
+and report interfaces. See [getting started](getting-started.md) for a complete Go
+example and [schemas and validation](schemas-validation.md) for the validation APIs.

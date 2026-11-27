@@ -17,7 +17,7 @@ layout: default
 Import `github.com/open-and-sustainable/jacquard` for every type and function above.
 The `definitions/v1/` directory holds schema data and is not a Go package.
 
-All validators take JSON and a version string, currently `v1`. Versions are exact;
+All validators take JSON and a version string, `v1`. Versions are exact;
 unknown versions/types return errors rather than selecting a fallback. Retrieve a
 fresh schema copy with `jacquard.Schema("v1", "input")`.
 
@@ -28,9 +28,9 @@ the caller's embedded extraction schema, resolve claim selectors, check evidence
 verify summary arithmetic, or compute an audit. These are engine responsibilities
 defined by the [checker contract](checker-contract.md).
 
-During a future `Check`, the caller's `contract.schema` validates the extraction,
-then claim rules check its semantics. A failure of the extraction schema is a
-finding in the checking report, while a malformed request is an operation error.
+The checker contract distinguishes extraction-schema findings from request errors.
+Use `jacquard.ValidateJSON(input.Extraction, input.Contract.Schema)` to validate an
+extraction against the schema declared by its caller.
 
 ## Explicit schema validation
 

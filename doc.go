@@ -7,8 +7,7 @@
 //   - [FunnelInput] and [FunnelOutput]: population size audit requests and reports.
 //
 // [Contract] declares a caller's extraction schema, claim selectors, and record
-// rules. These types describe the first-release interfaces; the evidence checker
-// and population audit engines are not yet implemented.
+// rules. The types represent document-checking and population audit data.
 //
 // # Validation functions
 //
@@ -21,7 +20,7 @@
 // # Schemas and errors
 //
 // [Schema] returns an independent copy of an embedded schema. [SchemaTypes]
-// lists interface names, and [SchemaVersion] identifies the current JSON format
+// lists interface names, and [SchemaVersion] identifies the JSON format
 // independently of software release versions. Counts and amounts that can exceed
 // machine-integer precision use encoding/json.Number.
 //

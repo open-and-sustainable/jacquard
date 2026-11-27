@@ -12,13 +12,12 @@ authors:
 repository-code: "https://github.com/open-and-sustainable/jacquard"
 url: "https://open-and-sustainable.github.io/jacquard/"
 abstract: >-
-  Jacquard is open science software being developed for AI-assisted knowledge
-  synthesis, with deterministic checks of extracted claims against their source
-  documents. Its first-release contract covers schema and claim-rule validation,
-  exact quote location and mismatch diagnosis, text and numeric value support,
-  per-claim evidence reports, and an audit of filtering by item size. The current
-  implementation provides versioned JSON interfaces and interface validation for
-  Go, command-line, and C-shared library callers. All acceptance material is synthetic.
+  Jacquard is open science software for deterministic evidence checking in
+  AI-assisted knowledge synthesis. It provides versioned contracts for checking
+  extracted claims against source documents, covering output structure, quote
+  fidelity, text and numeric support, evidence reporting, and size-based filter
+  audits. Its Go library, command-line tool, and C shared library validate JSON
+  requests and reports using explicit rules and arbitrary-precision numbers.
 keywords:
   - AI-assisted knowledge synthesis
   - Knowledge synthesis

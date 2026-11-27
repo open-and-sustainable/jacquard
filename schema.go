@@ -19,7 +19,7 @@ func SchemaTypes() []string {
 // Schema returns an embedded schema without exposing mutable global state.
 //
 // Parameters:
-//   - version: The exact interface version, currently [SchemaVersion] (v1).
+//   - version: The exact interface version, [SchemaVersion] (v1).
 //   - kind: An interface name returned by [SchemaTypes].
 //
 // Returns:

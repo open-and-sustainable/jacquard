@@ -33,7 +33,7 @@ func validate(input, version *C.char, kind string) (result *C.char) {
 //
 // Parameters:
 //   - input: One NUL-terminated UTF-8 JSON request.
-//   - version: A NUL-terminated interface version string, currently v1.
+//   - version: A NUL-terminated interface version string, v1.
 //
 // Returns an owned UTF-8 JSON result with valid, issues, and an optional error.
 // NULL parameters produce a JSON error. Free the result with [FreeCString].
@@ -46,7 +46,7 @@ func RunValidationInput(input, version *C.char) *C.char { return validate(input,
 //
 // Parameters:
 //   - input: One NUL-terminated UTF-8 JSON report.
-//   - version: A NUL-terminated interface version string, currently v1.
+//   - version: A NUL-terminated interface version string, v1.
 //
 // Returns an owned UTF-8 JSON result with valid, issues, and an optional error.
 // NULL parameters produce a JSON error. Free the result with [FreeCString].
@@ -59,7 +59,7 @@ func RunValidationOutput(input, version *C.char) *C.char { return validate(input
 //
 // Parameters:
 //   - input: One NUL-terminated UTF-8 JSON audit request.
-//   - version: A NUL-terminated interface version string, currently v1.
+//   - version: A NUL-terminated interface version string, v1.
 //
 // Returns an owned UTF-8 JSON result with valid, issues, and an optional error.
 // NULL parameters produce a JSON error. Free the result with [FreeCString].
@@ -74,7 +74,7 @@ func RunValidationFunnelInput(input, version *C.char) *C.char {
 //
 // Parameters:
 //   - input: One NUL-terminated UTF-8 JSON audit report.
-//   - version: A NUL-terminated interface version string, currently v1.
+//   - version: A NUL-terminated interface version string, v1.
 //
 // Returns an owned UTF-8 JSON result with valid, issues, and an optional error.
 // NULL parameters produce a JSON error. Free the result with [FreeCString].

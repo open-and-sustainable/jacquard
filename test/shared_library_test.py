@@ -1,4 +1,4 @@
-"""Synthetic smoke test for the current C interface; uses only the Python stdlib."""
+"""Synthetic smoke test for the C interface; uses only the Python stdlib."""
 
 import ctypes
 import json

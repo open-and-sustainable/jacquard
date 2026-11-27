@@ -5,8 +5,8 @@ layout: default
 
 # C-shared library
 
-The current C exports validate interface shapes using the root `jacquard` Go
-package, as does the CLI. Evidence checking and audit computation are planned separately.
+The C exports validate JSON request and report structures using the root
+`jacquard` Go package, as does the CLI.
 
 ## Build
 
@@ -21,7 +21,7 @@ Use `.dylib` on macOS or `.dll` on Windows. Go generates the corresponding
 `jacquard.h`; distribute the header with the library. Release CI is configured to
 build native libraries and headers when a release is published.
 
-## Current functions
+## Exported functions
 
 - `RunValidationInput(input, version)`
 - `RunValidationOutput(input, version)`
@@ -36,8 +36,7 @@ produce a JSON error. No diagnostic text is printed by the library.
 
 **Free each result exactly once with `FreeCString`.** Input buffers remain owned by
 the caller. `FreeCString(NULL)` is safe. Keep the library loaded until its returned
-strings have been freed. The future `RunCheck` and `RunAuditFunnel` exports will use
-the same ownership rule and the envelopes specified in the checker contract.
+strings have been freed.
 
 ## C
 

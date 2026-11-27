@@ -3,13 +3,13 @@ title: Testing
 layout: default
 ---
 
-# Synthetic tests and release acceptance
+# Testing
 
-Every test input is self-written or generated from a fixed synthetic seed. Tests
-must not load a real document collection, call a model, require a secret, or fetch
-data. Pin dependencies during setup; execute the suite offline.
+The test suite uses synthetic fixtures written in this repository. Generated test
+data uses fixed seeds. Tests run offline after dependency setup, without model
+calls, credentials, or an external document collection.
 
-## Implemented now
+## Executable test coverage
 
 - Embedded schemas: supported types, exact versions, independent returned copies.
 - Interface validation: valid/rejected requests and reports, integer boundaries,
@@ -19,12 +19,16 @@ data. Pin dependencies during setup; execute the suite offline.
 - Go integration: synthetic request/report fixture shapes and typed JSON round trips.
 - C interface: all validators, malformed input, NULL arguments, repeated allocation/free.
 
-These tests validate the interface foundation. They do not imply that the five
-checking engines exist or that fixture findings have been computed by an engine.
+The report fixtures are hand-authored examples. Interface tests verify their
+schemas and typed JSON round trips. Checking a report's structure and checking
+its evidence are separate assertions.
 
-## Required before v0.1.0
+## Checker contract scenarios
 
-| Area | Synthetic acceptance cases |
+These scenarios describe the boundary rules in the
+[checker contract](checker-contract.md).
+
+| Area | Scenarios |
 | --- | --- |
 | Contract validation | All five claim kinds; absent vs null; blank strings; invalid types; unknown reference; inline/reference conflict; custom part paths; escaped property names; array selectors; overlapping selectors; record rules; schema failure short-circuit |
 | Quote fidelity | Exact/repeated/overlapping matches; empty source; multibyte Unicode offsets; combining characters; case/ellipsis/typography/whitespace diagnoses in precedence order; unmatched prefix/suffix; diagnoses never pass |
@@ -34,10 +38,9 @@ checking engines exist or that fixture findings have been computed by an engine.
 | Size audit | Missing/unparsed/zero; nearest-rank cutoffs; ties; empty and small reference sets; out-of-range positives; several linked buckets; per-item deduplication; zero cells; stage-prefix errors; duplicate ids |
 | Interface parity | The same synthetic cases through Go, CLI single JSON/JSON Lines, and C; identical reports/errors and correct memory ownership |
 
-The fixture directory contains invented examples for the interface tests. Additional
-engine acceptance cases belong there or in package table tests as implementation
-progresses. An expected report must be asserted against a real engine before a case
-counts toward release acceptance; validating its shape alone does not qualify.
+Test fixtures live in `test/fixtures/`; focused cases also live in package table
+tests. Evidence assertions compare computed findings against independently stated
+expected results and source text. Schema assertions check JSON structure.
 
 For example, `three volunteers` must yield 3; `between three and five` must yield
 3 and 5, while `one hundred and five` must yield 105. A quote `2.5 volunteers` must

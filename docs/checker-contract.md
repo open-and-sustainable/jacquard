@@ -3,34 +3,26 @@ title: Checker Contract
 layout: default
 ---
 
-# First-release checker contract
+# Checker contract
 
-Target software release: **v0.1.0**. JSON interface: **v1**.
+JSON interface: **v1**.
 
-This is the development contract for all five first-release capabilities. The
-repository currently implements the interface definitions and shape validation;
-the checking and audit engines must satisfy this contract before release.
+This contract defines document-checking and filter-size audit data, rules, and
+report semantics.
 
 ## Operations and boundaries
 
-The planned Go operations are exported from the root `jacquard` package, together
-with the request/report types and current interface validators:
+The root `jacquard` package exports the request/report types and JSON validators:
 
-```go
-func Check(input Input) (Output, error)
-func AuditFunnel(input FunnelInput) (FunnelOutput, error)
-```
+- `Input` and `Output` represent a document, its extraction, and checking findings.
+- `FunnelInput` and `FunnelOutput` represent a population and its size audit.
 
-`Check` handles one document and extraction. `AuditFunnel` handles a population.
-Go, the CLI, and C exports must call the same engines. The planned CLI commands
-are `jacquard check` and `jacquard funnel`, each with single-JSON and JSON Lines modes.
-The planned C exports are `RunCheck` and `RunAuditFunnel`, returning owned JSON strings.
-These entry points are not yet available; current validation commands and exports
-are listed in their respective guides.
+The [Go validation APIs](schemas-validation.md), [CLI](command-line.md), and
+[C exports](cshared-library.md) validate these structures using the same schemas.
 
 The library is deterministic. It performs no model calls or network requests,
 does not modify source text, and checks documentary support rather than truth in
-the world. All acceptance material is synthetic and belongs to this repository.
+the world.
 
 ## Document checker input
 
@@ -42,7 +34,7 @@ A request contains `metadata.schemaVersion`, `document`, `extraction`, and `cont
 - `contract.id`: a nonempty caller-defined rule identifier.
 - `contract.schema`: a self-contained draft-07 JSON Schema. Boolean schemas are valid.
   References within that schema are supported. File and network references are rejected.
-- `contract.language_table`: an explicit versioned table, initially `en-v1`.
+- `contract.language_table`: an explicit versioned table, `en-v1` for English.
   Unknown tables or an incompatible document language are request errors; there is no
   silent fallback. `en`, `en-US`, and other English subtags use `en-v1`.
 - `contract.claims`: selectors and claim kinds. An empty list permits schema-only checks.
@@ -114,7 +106,7 @@ If the schema passes, apply semantic rules to each selected claim:
 Count qualifications are `exact`, `approximate`, `at_least`, `more_than`, `at_most`,
 `less_than`, `range`, and `unquantified`. `range` requires `upper_value >= value`;
 other qualifications prohibit `upper_value`. `unquantified` requires null bounds.
-Amounts use the same qualifications except `range` in this release; unquantified
+Amounts use the same qualifications except `range` in interface v1; unquantified
 amounts have null amount text, and quoted prose can describe the uncertainty.
 Qualification labels are checked for consistency, not inferred from natural language.
 `causal_scope` has no built-in vocabulary or requirement; callers declare those.
@@ -177,7 +169,7 @@ A nonexact quote has no exact occurrences and one diagnosis, chosen in this orde
 5. `other`: report the longest prefix and suffix of the quote found in the document,
    measured on code-point boundaries. Either may be empty.
 
-Diagnosis never changes `exact=false`. No tolerant quote mode ships in this release.
+Diagnosis never changes `exact=false`. Interface v1 requires exact matching.
 
 ## 3. Value support
 
@@ -188,8 +180,8 @@ source, otherwise `as_written_not_in_text`.
 Count reading reports sorted, unique arbitrary-precision nonnegative integers.
 English v1 recognizes digit literals with valid thousands grouping and number words
 from zero through billions, including hundreds, hyphens, and conjunctions inside a
-number. Decimals and ordinal tokens do not become integer counts. The synthetic
-acceptance cases fix the boundary behavior; no floating-point conversion is allowed.
+number. Decimals and ordinal tokens do not become integer counts. Count reading
+uses integer arithmetic throughout, without floating-point conversion.
 
 `count_support` defaults to `literal`. `literal_or_implied` additionally enables the
 table's zero phrases and indefinite-person rules, scoped by the rule's `field_words`.
@@ -241,7 +233,7 @@ declared contract fields. Identical requests and rule versions produce identical
 
 ## 5. Filter-size audit
 
-`AuditFunnel` takes declared stage names in order, `reference_values` per caller-defined
+A size audit uses declared stage names in order, `reference_values` per caller-defined
 field, and items with `item_id`, per-field measurements, and `passed_stages`.
 Reference values are nonnegative integers; zero values are excluded from cutoff
 calculation. Each measurement is explicitly `parsed` with an integer `value`, `missing`,
@@ -269,7 +261,7 @@ Cell order is declared stage order, lexicographically sorted fields, then the bu
 order above. The audit reports counts; it does not declare statistical bias or impose
 a pass/fail threshold.
 
-## Errors, versioning, and release acceptance
+## Errors, versioning, and batch format
 
 Malformed requests, invalid contracts, unsupported table versions, and invalid audit
 populations are operation errors. An extraction that violates its schema or has
@@ -277,16 +269,14 @@ unsupported evidence is a successful operation returning a negative report. Do n
 mix these two error channels. JSON interface validation alone does not verify semantic
 request rules such as stage prefixes or selector overlaps.
 
-For JSON Lines, emit one envelope per input line, in order: `{"ok":true,"report":...}`
+The batch format uses one JSON Lines envelope per input record, in order:
+`{"ok":true,"report":...}`
 or `{"ok":false,"error":{"code":...,"message":...}}`. Blank lines are invalid records.
-An invalid line does not discard other records. Write batch totals to stderr so stdout
-remains JSON Lines. Operation error codes are `invalid_json`, `invalid_request`,
-`invalid_contract`, `unsupported_language_table`, and `internal_error`. The CLI exits
-0 for successful operations (even negative findings), 1 if any operation fails, and
-2 for invocation or I/O errors. The C interface uses the same success/error envelopes;
-callers free every returned string with `FreeCString`.
+An invalid line does not discard other records. Operation error codes are
+`invalid_json`, `invalid_request`, `invalid_contract`, `unsupported_language_table`,
+and `internal_error`. The command and C-library guides describe their validation
+result formats, invocation errors, and memory ownership.
 
 Behavior changes require explicit rule/interface version decisions and a changelog
-entry. The first release is accepted only after all five capabilities pass the
-[synthetic acceptance matrix](testing.md), with the same results through Go, CLI, and
-C interfaces. Dependency setup may use the network; checking, audits, and tests may not.
+entry. Go, CLI, and C validation use the same schemas and finding rules.
+The [testing guide](testing.md) describes the test suite and contract scenarios.

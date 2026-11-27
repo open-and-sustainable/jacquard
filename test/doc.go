@@ -14,8 +14,7 @@
 // Go dependencies have been downloaded. C-interface tests additionally require
 // a C compiler, a built shared library, and Python 3.
 //
-// Hand-authored example reports describe interface shapes. They do not substitute
-// for engine acceptance tests, which will be added as checking is implemented.
+// Hand-authored report fixtures exercise JSON structure and typed round trips.
 //
 // # Example usage
 //

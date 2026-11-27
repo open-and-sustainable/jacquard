@@ -7,7 +7,7 @@ layout: default
 
 Report bugs and feature requests in the
 [issue tracker](https://github.com/open-and-sustainable/jacquard/issues).
-Include the Go version, interface version, and a minimal synthetic reproduction.
+Include the Go version, interface version, and a minimal reproduction.
 
 - [Checker contract](checker-contract.md)
 - [Schemas and validation](schemas-validation.md)

@@ -5,7 +5,7 @@ layout: default
 
 # Command line
 
-Build the current interface-validation command:
+Build the interface-validation command:
 
 ```sh
 go build -o bin/jacquard ./cmd/jacquard
@@ -30,6 +30,5 @@ issues and exit 1. Unknown schema versions/types, invocation errors, and I/O err
 exit 2. Successful validation and schema display exit 0. Diagnostic usage output
 goes to stderr.
 
-The first-release `check` and `funnel` commands, including JSON Lines mode, are
-planned in the [checker contract](checker-contract.md). They are not implemented
-by this validation command.
+The [checker contract](checker-contract.md) defines the document and audit data
+formats validated by these commands.

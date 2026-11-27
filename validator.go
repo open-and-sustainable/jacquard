@@ -36,7 +36,7 @@ func (e *Error) Error() string {
 //
 // Parameters:
 //   - input: One UTF-8 JSON request containing metadata, document, extraction, and contract.
-//   - version: The exact interface version, currently v1.
+//   - version: The exact interface version, v1.
 //
 // Returns nil for a valid request shape, *[Error] for instance findings, or an
 // ordinary error for an unavailable schema. It does not check evidence or execute
@@ -49,7 +49,7 @@ func ValidateInput(input, version string) error {
 //
 // Parameters:
 //   - output: One UTF-8 JSON report, including format findings, claims, and summary.
-//   - version: The exact interface version, currently v1.
+//   - version: The exact interface version, v1.
 //
 // Returns nil for a valid report shape, *[Error] for instance findings, or an
 // ordinary error for an unavailable schema. It does not recompute findings or
@@ -62,7 +62,7 @@ func ValidateOutput(output, version string) error {
 //
 // Parameters:
 //   - input: One UTF-8 JSON audit request with stages, reference values, and items.
-//   - version: The exact interface version, currently v1.
+//   - version: The exact interface version, v1.
 //
 // Returns nil for a valid request shape, *[Error] for instance findings, or an
 // ordinary error for an unavailable schema. Population rules such as unique item
@@ -75,7 +75,7 @@ func ValidateFunnelInput(input, version string) error {
 //
 // Parameters:
 //   - output: One UTF-8 JSON audit report with cutoffs and stage/field/bucket cells.
-//   - version: The exact interface version, currently v1.
+//   - version: The exact interface version, v1.
 //
 // Returns nil for a valid report shape, *[Error] for instance findings, or an
 // ordinary error for an unavailable schema. It does not recompute cutoffs or counts.
@@ -87,7 +87,7 @@ func ValidateFunnelOutput(output, version string) error {
 //
 // Parameters:
 //   - instance: One UTF-8 JSON value to validate.
-//   - version: The exact interface version, currently v1.
+//   - version: The exact interface version, v1.
 //   - kind: input, output, funnel_input, or funnel_output.
 //
 // Returns nil for a valid instance, *[Error] for malformed/invalid instance JSON,
