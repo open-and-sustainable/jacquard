@@ -10,8 +10,8 @@ plugins:
 relative_links:
   enabled: true
 
-logo: "assets/images/logo.png"
-favicon: "assets/images/favicon.ico"
+logo: "assets/images/jacquard-logo.png"
+favicon: "assets/images/jacquard-favicon.ico"
 nav_links:
   - name: "/Users/Main Features"
     url: "/main-features.html"
