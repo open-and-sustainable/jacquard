@@ -7,8 +7,7 @@ layout: default
 
 ## Repository layout
 
-The documentation, schema definitions, bindings, and testing follow Alembica's
-patterns. The public Go API is collected in the root `jacquard` package:
+The public Go API is exposed by the root `jacquard` package:
 
 | Path | Purpose |
 | --- | --- |
@@ -71,25 +70,23 @@ The [testing guide](testing.md) lists executable coverage and contract scenarios
 
 ## Documentation
 
-`docs/_config.yml` uses the same `open-and-sustainable/greendoc_theme` theme and
-user/integrator/contributor navigation as Alembica. Jacquard uses indigo navigation
-and indigo interaction colors. The site title, description, navigation, colors, and
-artwork paths are configured in that file.
+Configure the site title, description, navigation, colors, and artwork paths in
+`docs/_config.yml`. The site uses the `open-and-sustainable/greendoc_theme` theme
+with a local layout in `docs/_layouts/default.html`.
 
 The [Documentation Pages workflow](publishing.md) builds `docs/` from `main`
-and publishes the generated artifact to GitHub Pages. The local layout makes
-logo and favicon rendering conditional on the presence of their asset files.
+and publishes the generated artifact to GitHub Pages.
 
 ## Changelog and citation metadata
 
-The root `CHANGELOG.md` follows Alembica's categorized semantic-versioning pattern:
-Added, Changed, Deprecated, Removed, Fixed, and Security. Keep pending changes under
-`[Unreleased]`. At release time, move them to `[MAJOR.MINOR.PATCH] - YYYY-MM-DD`,
+Use these categories in `CHANGELOG.md`: Added, Changed, Deprecated, Removed, Fixed,
+and Security. Keep pending changes under `[Unreleased]`. At release time, move
+them to `[MAJOR.MINOR.PATCH] - YYYY-MM-DD`,
 record the actual release date, and start a new unreleased entry.
 
 Keep `CITATION.cff`, the README citation, and the documentation home-page citation
 consistent. The CFF records the title, author, ORCID, affiliation, repository,
 documentation URL, abstract, keywords, and license. Add version, release date,
-DOI, and the DOI identifier entry when those values exist. Use Jacquard's own
-archive identifiers. The Go API reference is generated from source comments and
-executable examples when the module is published and indexed by pkg.go.dev.
+DOI, and the DOI identifier entry when those values exist. The Go API reference
+is generated from source comments and executable examples when the module is
+published and indexed by pkg.go.dev.

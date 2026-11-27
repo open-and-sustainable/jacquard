@@ -56,11 +56,6 @@ For example, call `jacquard.ValidateInput(inputJSON)` or
 - [Go API reference](https://pkg.go.dev/github.com/open-and-sustainable/jacquard)
 - [Changelog](CHANGELOG.md)
 
-The documentation and development patterns follow
-[Alembica](https://github.com/open-and-sustainable/alembica): JSON schemas,
-documented Go APIs, C exports, a themed documentation site, package tests, and
-integration tests. Jacquard's public Go API lives in the root package.
-
 ## Testing
 
 The test suite uses synthetic documents, extractions, populations, and expected
