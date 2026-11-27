@@ -21,7 +21,7 @@ point. Preview Go documentation locally with `go doc`.
 
 Before submitting, run the checks in [development](development.md). Describe the
 problem, resulting behavior, and validation in a pull request. Interface/rule changes
-need explicit version decisions and a categorized `[Unreleased]` changelog entry.
+need corresponding tests and a categorized `[Unreleased]` changelog entry.
 Keep the README citation, documentation home-page citation, and `CITATION.cff`
 consistent. Add release dates, versions, and Jacquard archive identifiers when
 they are assigned.

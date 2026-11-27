@@ -9,7 +9,7 @@ import (
 )
 
 func ExampleSchema() {
-	schema, err := jacquard.Schema("v1", "input")
+	schema, err := jacquard.Schema("input")
 	if err != nil {
 		log.Fatal(err)
 	}

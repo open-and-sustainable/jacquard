@@ -18,7 +18,7 @@ Releases use semantic versioning as in `MAJOR.MINOR.PATCH`.
 
 - Checker contract for contract validation, quote fidelity, value support,
   evidence reporting, and a separate filter-size audit.
-- Go module with versioned JSON interfaces, arbitrary-precision interface validators,
+- Go module with JSON interfaces, arbitrary-precision interface validators,
   a validation CLI, and C exports.
 - Synthetic contract fixtures, package and integration tests, and shared-library smoke tests.
 - GreenDoc user, integrator, and contributor guides with an indigo palette.
@@ -36,6 +36,14 @@ Releases use semantic versioning as in `MAJOR.MINOR.PATCH`.
   with a plain project name in headings and citations.
 - Use direct capability descriptions throughout the documentation and keep
   synthetic-data statements specific to the test suite.
+- Use the uploaded logo and favicon on the documentation site and the logo in
+  the README, with the logo's indigo as the documentation accent.
+
+### Removed
+
+- Manual schema version selectors, interface-version metadata, and versioned
+  directories for static schema files.
+- The assets README and unused placeholder directory.
 
 ### Fixed
 

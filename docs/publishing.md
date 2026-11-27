@@ -28,6 +28,6 @@ setting is enabled. Generated HTML belongs in the workflow artifact, not a Git b
 ## Branding and assets
 
 `docs/_config.yml` sets the site title, description, navigation, indigo colors,
-and the logo and favicon paths. Store images in `docs/assets/images/` as described
-in the [assets guide](https://github.com/open-and-sustainable/jacquard/blob/main/docs/assets/README.md).
+and the logo and favicon paths. The logo is `docs/assets/jacquard_logo.png` and the
+favicon is `docs/assets/favicon.ico`.
 The local layout omits an image tag if its asset file is absent.

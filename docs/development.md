@@ -7,13 +7,13 @@ layout: default
 
 ## Repository layout
 
-The documentation, schema versioning, bindings, and testing follow Alembica's
+The documentation, schema definitions, bindings, and testing follow Alembica's
 patterns. The public Go API is collected in the root `jacquard` package:
 
 | Path | Purpose |
 | --- | --- |
 | Repository root | Public Go types, schema helpers, and validation functions |
-| `definitions/v1/` | Embedded versioned JSON schema data; no separate Go package |
+| `definitions/` | Embedded JSON schema data; no separate Go package |
 | `cmd/jacquard/` | JSON validation and schema-display CLI |
 | `utils/sharedlib/` | C exports and string ownership boundary |
 | `test/` | Synthetic integration fixtures and FFI smoke test |

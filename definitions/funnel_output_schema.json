@@ -1,11 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Jacquard v1 funnel_output",
+  "title": "Jacquard funnel_output",
   "type": "object",
   "properties": {
-    "metadata": {
-      "$ref": "#/definitions/metadata"
-    },
     "jacquard_version": {
       "type": "string",
       "minLength": 1
@@ -63,24 +60,10 @@
     }
   },
   "required": [
-    "metadata",
     "jacquard_version",
     "cutoffs",
     "cells"
   ],
   "additionalProperties": false,
-  "definitions": {
-    "metadata": {
-      "type": "object",
-      "properties": {
-        "schemaVersion": {
-          "const": "v1"
-        }
-      },
-      "required": [
-        "schemaVersion"
-      ],
-      "additionalProperties": false
-    }
-  }
+  "definitions": {}
 }

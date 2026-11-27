@@ -1,11 +1,13 @@
 # Jacquard
 
+<img src="docs/assets/jacquard_logo.png" alt="Jacquard logo" width="180">
+
 Deterministic evidence checking for AI-assisted knowledge synthesis.
 
 ## About
 
 Jacquard is open science software for deterministic evidence checking in
-AI-assisted knowledge synthesis. It provides versioned contracts for extracted
+AI-assisted knowledge synthesis. It provides contracts for extracted
 claims, their source documents, and evidence reports, with JSON validation through
 a Go library, command-line tool, and C shared library.
 
@@ -37,7 +39,7 @@ Import the root package to access the public types, schema helpers, and validato
 import "github.com/open-and-sustainable/jacquard"
 ```
 
-For example, call `jacquard.ValidateInput(inputJSON, "v1")` or
+For example, call `jacquard.ValidateInput(inputJSON)` or
 `jacquard.ValidateJSON(instance, schema)`. See the
 [Go usage example](docs/getting-started.md) for a complete program.
 
@@ -55,7 +57,7 @@ Documentation:
 [open-and-sustainable.github.io/jacquard](https://open-and-sustainable.github.io/jacquard/).
 
 The documentation and development patterns follow
-[Alembica](https://github.com/open-and-sustainable/alembica): versioned JSON schemas,
+[Alembica](https://github.com/open-and-sustainable/alembica): JSON schemas,
 documented Go APIs, C exports, a themed documentation site, package tests, and
 integration tests. Jacquard's public Go API lives in the root package.
 

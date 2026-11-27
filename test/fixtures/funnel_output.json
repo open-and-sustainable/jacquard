@@ -1,7 +1,4 @@
 {
-  "metadata": {
-    "schemaVersion": "v1"
-  },
   "jacquard_version": "0.1.0-dev",
   "cutoffs": {
     "size": [

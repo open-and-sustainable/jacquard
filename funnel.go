@@ -19,7 +19,6 @@ type FunnelItem struct {
 
 // FunnelInput declares the reference population and all audit stages up front.
 type FunnelInput struct {
-	Metadata        Metadata                 `json:"metadata"`
 	Stages          []string                 `json:"stages"`
 	ReferenceValues map[string][]json.Number `json:"reference_values"`
 	Items           []FunnelItem             `json:"items"`
@@ -35,7 +34,6 @@ type FunnelCell struct {
 
 // FunnelOutput includes zero-count cells and the cutoffs used to assign deciles.
 type FunnelOutput struct {
-	Metadata        Metadata                 `json:"metadata"`
 	JacquardVersion string                   `json:"jacquard_version"`
 	Cutoffs         map[string][]json.Number `json:"cutoffs"`
 	Cells           []FunnelCell             `json:"cells"`

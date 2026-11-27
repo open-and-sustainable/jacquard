@@ -25,7 +25,7 @@ func TestCLI(t *testing.T) {
 		{"invalid input", []string{"validate"}, `{}`, 1},
 		{"malformed JSON", []string{"validate"}, `{`, 1},
 		{"two JSON values", []string{"validate"}, string(fixture) + `{}`, 1},
-		{"unknown version", []string{"validate", "-version", "v99"}, string(fixture), 2},
+		{"unknown validation schema", []string{"validate", "-type", "unknown"}, string(fixture), 2},
 		{"unknown schema", []string{"schema", "-type", "unknown"}, "", 2},
 		{"unknown command", []string{"check"}, "", 2},
 		{"unexpected argument", []string{"validate", "extra"}, "", 2},

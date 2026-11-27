@@ -10,8 +10,8 @@
 //
 // # Parameters and results
 //
-// Each validator accepts NUL-terminated UTF-8 input and schema-version strings.
-// The supported version is v1. A returned JSON object contains valid and issues,
+// Each validator accepts a NUL-terminated UTF-8 JSON input string.
+// A returned JSON object contains valid and issues,
 // plus error for an invalid invocation or unavailable schema. NULL inputs return
 // a JSON error. The library prints no diagnostics to stdout or stderr.
 //
@@ -31,7 +31,7 @@
 //	#include "jacquard.h"
 //
 //	int main(void) {
-//	    char *result = RunValidationInput("{}", "v1");
+//	    char *result = RunValidationInput("{}");
 //	    puts(result);
 //	    FreeCString(result);
 //	    return 0;

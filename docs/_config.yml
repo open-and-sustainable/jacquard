@@ -10,8 +10,8 @@ plugins:
 relative_links:
   enabled: true
 
-logo: "assets/images/jacquard-logo.png"
-favicon: "assets/images/jacquard-favicon.ico"
+logo: "assets/jacquard_logo.png"
+favicon: "assets/favicon.ico"
 nav_links:
   - name: "/Users/Main Features"
     url: "/main-features.html"
@@ -34,7 +34,7 @@ nav_links:
   - name: "/Contributors/Publishing Documentation"
     url: "/publishing.html"
 
-nav_background_color: "#312e81"
-nav_hover_color: "#4338ca"
+nav_background_color: "#342777"
+nav_hover_color: "#493793"
 nav_link_color: "#ffffff"
-toc-hover-color: "#4338ca"
+toc-hover-color: "#493793"

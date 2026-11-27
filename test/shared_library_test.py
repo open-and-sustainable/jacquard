@@ -26,11 +26,11 @@ class SharedLibraryTest(unittest.TestCase):
             "RunValidationFunnelOutput",
         ):
             function = getattr(cls.lib, name)
-            function.argtypes = [ctypes.c_char_p, ctypes.c_char_p]
+            function.argtypes = [ctypes.c_char_p]
             function.restype = ctypes.c_void_p
 
-    def call(self, name, data, version=b"v1"):
-        pointer = getattr(self.lib, name)(data, version)
+    def call(self, name, data):
+        pointer = getattr(self.lib, name)(data)
         self.assertTrue(pointer)
         try:
             return json.loads(ctypes.string_at(pointer))
@@ -50,9 +50,7 @@ class SharedLibraryTest(unittest.TestCase):
 
     def test_errors_are_json(self):
         self.assertFalse(self.call("RunValidationInput", b"{")["valid"])
-        self.assertIn("error", self.call("RunValidationInput", b"{}", b"v99"))
         self.assertIn("error", self.call("RunValidationInput", None))
-        self.assertIn("error", self.call("RunValidationInput", b"{}", None))
         self.lib.FreeCString(None)
 
     def test_repeated_allocations(self):

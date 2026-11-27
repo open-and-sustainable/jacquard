@@ -8,7 +8,7 @@ layout: default
 Deterministic evidence checking for AI-assisted knowledge synthesis.
 
 Jacquard is open science software for deterministic evidence checking in
-AI-assisted knowledge synthesis. It provides versioned contracts for extracted
+AI-assisted knowledge synthesis. It provides contracts for extracted
 claims, source documents, and evidence reports, with JSON validation through Go,
 command-line, and C interfaces.
 
@@ -30,7 +30,7 @@ Validation produces reproducible findings with JSON Pointers to the affected val
 
 ## Open science
 
-Rules and interfaces are versioned, and findings are inspectable. The project uses the
+Rules are explicit, and findings are inspectable. The project uses the
 [GNU AGPL v3](https://github.com/open-and-sustainable/jacquard/blob/main/LICENSE).
 
 ## Citation

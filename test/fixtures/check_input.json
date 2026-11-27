@@ -1,7 +1,4 @@
 {
-  "metadata": {
-    "schemaVersion": "v1"
-  },
   "document": {
     "document_id": "synthetic-study-01",
     "language": "en",
@@ -43,8 +40,8 @@
     ]
   },
   "contract": {
-    "id": "synthetic-study-v1",
-    "language_table": "en-v1",
+    "id": "synthetic-study",
+    "language_table": "en",
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
       "type": "object",

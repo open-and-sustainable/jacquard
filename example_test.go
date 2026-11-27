@@ -10,7 +10,6 @@ import (
 
 func ExampleValidateInput() {
 	input := `{
-		"metadata": {"schemaVersion": "v1"},
 		"document": {
 			"document_id": "synthetic-example",
 			"language": "en",
@@ -18,13 +17,13 @@ func ExampleValidateInput() {
 		},
 		"extraction": {"participants": 3},
 		"contract": {
-			"id": "synthetic-v1",
-			"language_table": "en-v1",
+			"id": "synthetic-example",
+			"language_table": "en",
 			"schema": {"type": "object"},
 			"claims": []
 		}
 	}`
-	if err := jacquard.ValidateInput(input, "v1"); err != nil {
+	if err := jacquard.ValidateInput(input); err != nil {
 		log.Fatal(err)
 	}
 	// This confirms the request shape; it does not check the claim's evidence.
@@ -47,10 +46,10 @@ func ExampleValidateJSON() {
 }
 
 func ExampleError() {
-	err := jacquard.ValidateInput(`{}`, "v1")
+	err := jacquard.ValidateInput(`{}`)
 	var findings *jacquard.Error
 	if errors.As(err, &findings) {
 		fmt.Println("instance findings:", len(findings.Issues))
 	}
-	// Output: instance findings: 4
+	// Output: instance findings: 3
 }

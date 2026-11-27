@@ -36,7 +36,7 @@ func main() {
     if err != nil {
         panic(err)
     }
-    if err := jacquard.ValidateInput(string(data), "v1"); err != nil {
+    if err := jacquard.ValidateInput(string(data)); err != nil {
         panic(err)
     }
     fmt.Println("Valid request shape")

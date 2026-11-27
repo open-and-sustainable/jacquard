@@ -1,4 +1,4 @@
-// Package jacquard provides versioned contracts and JSON interface validation for
+// Package jacquard provides contracts and JSON interface validation for
 // deterministic evidence checking in AI-assisted knowledge synthesis.
 //
 // # Supported interfaces
@@ -13,19 +13,18 @@
 //
 // [ValidateInput], [ValidateOutput], [ValidateFunnelInput], and
 // [ValidateFunnelOutput] validate the four JSON interface shapes. [Validate]
-// selects a schema by version and interface name. [ValidateJSON] accepts an
+// selects a schema by interface name. [ValidateJSON] accepts an
 // explicit, self-contained draft-07 schema. [ResultFor] converts validation
 // outcomes to the JSON result used by the CLI and C exports.
 //
 // # Schemas and errors
 //
 // [Schema] returns an independent copy of an embedded schema. [SchemaTypes]
-// lists interface names, and [SchemaVersion] identifies the JSON format
-// independently of software release versions. Counts and amounts that can exceed
+// lists interface names. Counts and amounts that can exceed
 // machine-integer precision use encoding/json.Number.
 //
 // Validation preserves arbitrary-precision JSON numbers and sorts findings by
-// JSON Pointer, code, then message. The versioned validators return nil for a
+// JSON Pointer, code, then message. The validators return nil for a
 // valid instance, *[Error] for instance findings, or an ordinary error for an
 // unavailable or unusable schema. Callers can use errors.As to distinguish them.
 // [ValidateJSON] returns findings and schema errors separately. File and network

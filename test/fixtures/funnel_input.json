@@ -1,7 +1,4 @@
 {
-  "metadata": {
-    "schemaVersion": "v1"
-  },
   "stages": [
     "input",
     "retained"

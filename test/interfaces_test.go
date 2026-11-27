@@ -23,7 +23,7 @@ func TestSyntheticInterfaceFixtures(t *testing.T) {
 			if err != nil {
 				t.Fatal(err)
 			}
-			if err := jacquard.Validate(string(data), "v1", tt.kind); err != nil {
+			if err := jacquard.Validate(string(data), tt.kind); err != nil {
 				t.Fatalf("synthetic fixture is not valid: %v", err)
 			}
 			if err := json.Unmarshal(data, tt.target); err != nil {
@@ -33,7 +33,7 @@ func TestSyntheticInterfaceFixtures(t *testing.T) {
 			if err != nil {
 				t.Fatal(err)
 			}
-			if err := jacquard.Validate(string(roundtrip), "v1", tt.kind); err != nil {
+			if err := jacquard.Validate(string(roundtrip), tt.kind); err != nil {
 				t.Fatalf("typed round trip violates the interface: %v", err)
 			}
 		})
@@ -47,7 +47,7 @@ func TestFunnelMeasurementStates(t *testing.T) {
 		`{"state":"missing"}`,
 		`{"state":"unparsed"}`,
 	} {
-		if err := jacquard.ValidateFunnelInput(funnelWith(measurement), "v1"); err != nil {
+		if err := jacquard.ValidateFunnelInput(funnelWith(measurement)); err != nil {
 			t.Fatalf("valid measurement rejected: %s: %v", measurement, err)
 		}
 	}
@@ -59,14 +59,14 @@ func TestFunnelMeasurementStates(t *testing.T) {
 		`{"state":"unparsed","value":null}`,
 		`{"state":"guessed"}`,
 	} {
-		if err := jacquard.ValidateFunnelInput(funnelWith(measurement), "v1"); err == nil {
+		if err := jacquard.ValidateFunnelInput(funnelWith(measurement)); err == nil {
 			t.Fatalf("invalid measurement accepted: %s", measurement)
 		}
 	}
 }
 
 func funnelWith(measurement string) string {
-	return `{"metadata":{"schemaVersion":"v1"},"stages":["input"],"reference_values":{"size":[1]},"items":[{"item_id":"x","values":{"size":[` + measurement + `]},"passed_stages":["input"]}]}`
+	return `{"stages":["input"],"reference_values":{"size":[1]},"items":[{"item_id":"x","values":{"size":[` + measurement + `]},"passed_stages":["input"]}]}`
 }
 
 func TestEmbeddedExtractionSchemaCanBeUsedExplicitly(t *testing.T) {

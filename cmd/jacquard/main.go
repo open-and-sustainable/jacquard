@@ -14,7 +14,7 @@ func main() { os.Exit(run(os.Args[1:], os.Stdin, os.Stdout, os.Stderr)) }
 
 func run(args []string, input io.Reader, output, stderr io.Writer) int {
 	if len(args) == 0 {
-		fmt.Fprintln(stderr, "usage: jacquard <validate|schema> [-type input|output|funnel_input|funnel_output] [-version v1]")
+		fmt.Fprintln(stderr, "usage: jacquard <validate|schema> [-type input|output|funnel_input|funnel_output]")
 		return 2
 	}
 	if args[0] == "-h" || args[0] == "--help" || args[0] == "help" {
@@ -28,7 +28,6 @@ func run(args []string, input io.Reader, output, stderr io.Writer) int {
 	flags := flag.NewFlagSet(args[0], flag.ContinueOnError)
 	flags.SetOutput(stderr)
 	kind := flags.String("type", "input", "JSON interface type")
-	version := flags.String("version", jacquard.SchemaVersion, "JSON interface version")
 	if err := flags.Parse(args[1:]); err != nil {
 		if err == flag.ErrHelp {
 			return 0
@@ -40,7 +39,7 @@ func run(args []string, input io.Reader, output, stderr io.Writer) int {
 		return 2
 	}
 	if args[0] == "schema" {
-		schema, err := jacquard.Schema(*version, *kind)
+		schema, err := jacquard.Schema(*kind)
 		if err != nil {
 			fmt.Fprintln(stderr, err)
 			return 2
@@ -56,7 +55,7 @@ func run(args []string, input io.Reader, output, stderr io.Writer) int {
 		fmt.Fprintln(stderr, err)
 		return 2
 	}
-	result := jacquard.ResultFor(jacquard.Validate(string(data), *version, *kind))
+	result := jacquard.ResultFor(jacquard.Validate(string(data), *kind))
 	if err := json.NewEncoder(output).Encode(result); err != nil {
 		fmt.Fprintln(stderr, err)
 		return 2

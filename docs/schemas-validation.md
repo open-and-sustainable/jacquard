@@ -5,7 +5,7 @@ layout: default
 
 # Schemas and validation
 
-`definitions/v1/` contains embedded draft-07 schemas for four interfaces:
+`definitions/` contains embedded draft-07 schemas for four interfaces:
 
 | Type | Go type | Validator |
 | --- | --- | --- |
@@ -15,11 +15,11 @@ layout: default
 | `funnel_output` | `jacquard.FunnelOutput` | `jacquard.ValidateFunnelOutput` |
 
 Import `github.com/open-and-sustainable/jacquard` for every type and function above.
-The `definitions/v1/` directory holds schema data and is not a Go package.
+The `definitions/` directory holds schema data and is not a Go package.
 
-All validators take JSON and a version string, `v1`. Versions are exact;
-unknown versions/types return errors rather than selecting a fallback. Retrieve a
-fresh schema copy with `jacquard.Schema("v1", "input")`.
+Each validator takes one JSON string. `jacquard.Validate(instance, kind)` selects
+the interface explicitly; an unknown kind returns an error. Retrieve a fresh
+schema copy with `jacquard.Schema("input")`.
 
 ## Two validation layers
 

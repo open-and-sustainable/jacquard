@@ -1,13 +1,10 @@
 {
-  "metadata": {
-    "schemaVersion": "v1"
-  },
   "jacquard_version": "0.1.0-dev",
   "document_id": "synthetic-study-01",
   "rules": {
-    "contract_id": "synthetic-study-v1",
+    "contract_id": "synthetic-study",
     "contract_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "language_table": "en-v1",
+    "language_table": "en",
     "language_table_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
   },
   "format": {

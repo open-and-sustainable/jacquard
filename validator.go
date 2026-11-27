@@ -35,67 +35,62 @@ func (e *Error) Error() string {
 // ValidateInput validates the shape of a document checker request.
 //
 // Parameters:
-//   - input: One UTF-8 JSON request containing metadata, document, extraction, and contract.
-//   - version: The exact interface version, v1.
+//   - input: One UTF-8 JSON request containing document, extraction, and contract.
 //
 // Returns nil for a valid request shape, *[Error] for instance findings, or an
 // ordinary error for an unavailable schema. It does not check evidence or execute
 // the extraction schema embedded in the contract.
-func ValidateInput(input, version string) error {
-	return Validate(input, version, "input")
+func ValidateInput(input string) error {
+	return Validate(input, "input")
 }
 
 // ValidateOutput validates the shape of a document checker report.
 //
 // Parameters:
 //   - output: One UTF-8 JSON report, including format findings, claims, and summary.
-//   - version: The exact interface version, v1.
 //
 // Returns nil for a valid report shape, *[Error] for instance findings, or an
 // ordinary error for an unavailable schema. It does not recompute findings or
 // verify summary arithmetic.
-func ValidateOutput(output, version string) error {
-	return Validate(output, version, "output")
+func ValidateOutput(output string) error {
+	return Validate(output, "output")
 }
 
 // ValidateFunnelInput validates the shape of a size audit request.
 //
 // Parameters:
 //   - input: One UTF-8 JSON audit request with stages, reference values, and items.
-//   - version: The exact interface version, v1.
 //
 // Returns nil for a valid request shape, *[Error] for instance findings, or an
 // ordinary error for an unavailable schema. Population rules such as unique item
 // ids and stage prefixes are the audit engine's responsibility.
-func ValidateFunnelInput(input, version string) error {
-	return Validate(input, version, "funnel_input")
+func ValidateFunnelInput(input string) error {
+	return Validate(input, "funnel_input")
 }
 
 // ValidateFunnelOutput validates the shape of a size audit report.
 //
 // Parameters:
 //   - output: One UTF-8 JSON audit report with cutoffs and stage/field/bucket cells.
-//   - version: The exact interface version, v1.
 //
 // Returns nil for a valid report shape, *[Error] for instance findings, or an
 // ordinary error for an unavailable schema. It does not recompute cutoffs or counts.
-func ValidateFunnelOutput(output, version string) error {
-	return Validate(output, version, "funnel_output")
+func ValidateFunnelOutput(output string) error {
+	return Validate(output, "funnel_output")
 }
 
-// Validate checks an instance against one of the embedded versioned schemas.
+// Validate checks an instance against one of the embedded schemas.
 //
 // Parameters:
 //   - instance: One UTF-8 JSON value to validate.
-//   - version: The exact interface version, v1.
 //   - kind: input, output, funnel_input, or funnel_output.
 //
 // Returns nil for a valid instance, *[Error] for malformed/invalid instance JSON,
 // or an ordinary error if the schema is unavailable or cannot be compiled.
 // Findings are sorted by JSON Pointer, code, then message. This is interface
 // shape validation, not execution of the document checker or population audit.
-func Validate(instance, version, kind string) error {
-	schema, err := Schema(version, kind)
+func Validate(instance, kind string) error {
+	schema, err := Schema(kind)
 	if err != nil {
 		return err
 	}

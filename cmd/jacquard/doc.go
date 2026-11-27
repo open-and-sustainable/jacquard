@@ -1,11 +1,11 @@
-// Command jacquard validates and displays Jacquard's versioned JSON interfaces.
+// Command jacquard validates and displays Jacquard's JSON interfaces.
 //
 // # Commands
 //
 // The validate command reads one JSON value from stdin and writes a JSON result
 // containing valid, issues, and an optional configuration error. The schema
-// command writes an embedded draft-07 schema. Both accept -type and -version;
-// the defaults are input and v1. Supported types are input, output, funnel_input,
+// command writes an embedded draft-07 schema. Both accept -type, with input as
+// the default. Supported types are input, output, funnel_input,
 // and funnel_output.
 //
 // # Exit status
@@ -17,5 +17,5 @@
 // # Example usage
 //
 //	jacquard validate -type input < test/fixtures/check_input.json
-//	jacquard schema -type funnel_output -version v1
+//	jacquard schema -type funnel_output
 package main

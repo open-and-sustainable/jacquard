@@ -2,14 +2,6 @@ package jacquard
 
 import "encoding/json"
 
-// SchemaVersion identifies the JSON interface, independently of software releases.
-const SchemaVersion = "v1"
-
-// Metadata identifies the JSON interface used by a request or report.
-type Metadata struct {
-	SchemaVersion string `json:"schemaVersion"`
-}
-
 // Document contains exactly the UTF-8 text supplied to an extractor.
 type Document struct {
 	ID       string `json:"document_id"`
@@ -48,7 +40,6 @@ type Contract struct {
 
 // Input is one document, its parsed extraction, and a checking contract.
 type Input struct {
-	Metadata   Metadata        `json:"metadata"`
 	Document   Document        `json:"document"`
 	Extraction json.RawMessage `json:"extraction"`
 	Contract   Contract        `json:"contract"`
@@ -134,7 +125,6 @@ type Summary struct {
 
 // Output represents a document-checking report.
 type Output struct {
-	Metadata        Metadata      `json:"metadata"`
 	JacquardVersion string        `json:"jacquard_version"`
 	DocumentID      string        `json:"document_id"`
 	Rules           RuleIdentity  `json:"rules"`

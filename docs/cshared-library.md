@@ -23,14 +23,14 @@ build native libraries and headers when a release is published.
 
 ## Exported functions
 
-- `RunValidationInput(input, version)`
-- `RunValidationOutput(input, version)`
-- `RunValidationFunnelInput(input, version)`
-- `RunValidationFunnelOutput(input, version)`
+- `RunValidationInput(input)`
+- `RunValidationOutput(input)`
+- `RunValidationFunnelInput(input)`
+- `RunValidationFunnelOutput(input)`
 - `FreeCString(result)`
 
-Each validation function accepts two NUL-terminated UTF-8 strings and returns an
-owned NUL-terminated JSON string. `version` is `v1`. Results contain `valid` and
+Each validation function accepts one NUL-terminated UTF-8 JSON string and returns an
+owned NUL-terminated JSON string. Results contain `valid` and
 `issues`, plus `error` for an unavailable schema or invalid invocation. NULL inputs
 produce a JSON error. No diagnostic text is printed by the library.
 
@@ -45,7 +45,7 @@ strings have been freed.
 #include "jacquard.h"
 
 int main(void) {
-    char *result = RunValidationInput("{}", "v1");
+    char *result = RunValidationInput("{}");
     puts(result);
     FreeCString(result);
     return 0;
@@ -62,13 +62,13 @@ import ctypes
 from pathlib import Path
 
 lib = ctypes.CDLL(str(Path("dist/jacquard.so").resolve()))
-lib.RunValidationInput.argtypes = [ctypes.c_char_p, ctypes.c_char_p]
+lib.RunValidationInput.argtypes = [ctypes.c_char_p]
 lib.RunValidationInput.restype = ctypes.c_void_p
 lib.FreeCString.argtypes = [ctypes.c_void_p]
 lib.FreeCString.restype = None
 
 data = Path("test/fixtures/check_input.json").read_bytes()
-ptr = lib.RunValidationInput(data, b"v1")
+ptr = lib.RunValidationInput(data)
 try:
     print(ctypes.string_at(ptr).decode("utf-8"))
 finally:

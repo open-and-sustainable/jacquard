@@ -1,11 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Jacquard v1 input",
+  "title": "Jacquard input",
   "type": "object",
   "properties": {
-    "metadata": {
-      "$ref": "#/definitions/metadata"
-    },
     "document": {
       "type": "object",
       "properties": {
@@ -34,7 +31,6 @@
     }
   },
   "required": [
-    "metadata",
     "document",
     "extraction",
     "contract"
@@ -177,18 +173,6 @@
         "language_table",
         "schema",
         "claims"
-      ],
-      "additionalProperties": false
-    },
-    "metadata": {
-      "type": "object",
-      "properties": {
-        "schemaVersion": {
-          "const": "v1"
-        }
-      },
-      "required": [
-        "schemaVersion"
       ],
       "additionalProperties": false
     }

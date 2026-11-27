@@ -11,7 +11,7 @@ calls, credentials, or an external document collection.
 
 ## Executable test coverage
 
-- Embedded schemas: supported types, exact versions, independent returned copies.
+- Embedded schemas: supported types and independent returned copies.
 - Interface validation: valid/rejected requests and reports, integer boundaries,
   local schema references, blocked file/network references, JSON Pointer escaping,
   deterministic finding order, malformed JSON, and invalid UTF-8.

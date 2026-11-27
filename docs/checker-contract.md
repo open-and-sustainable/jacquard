@@ -5,8 +5,6 @@ layout: default
 
 # Checker contract
 
-JSON interface: **v1**.
-
 This contract defines document-checking and filter-size audit data, rules, and
 report semantics.
 
@@ -26,7 +24,7 @@ the world.
 
 ## Document checker input
 
-A request contains `metadata.schemaVersion`, `document`, `extraction`, and `contract`.
+A request contains `document`, `extraction`, and `contract`.
 
 - `document`: a nonempty `document_id`, a BCP-47 `language`, and the exact UTF-8 `text`
   seen by the extractor. Empty document text is valid.
@@ -34,9 +32,9 @@ A request contains `metadata.schemaVersion`, `document`, `extraction`, and `cont
 - `contract.id`: a nonempty caller-defined rule identifier.
 - `contract.schema`: a self-contained draft-07 JSON Schema. Boolean schemas are valid.
   References within that schema are supported. File and network references are rejected.
-- `contract.language_table`: an explicit versioned table, `en-v1` for English.
+- `contract.language_table`: an explicit rule table, `en` for English.
   Unknown tables or an incompatible document language are request errors; there is no
-  silent fallback. `en`, `en-US`, and other English subtags use `en-v1`.
+  silent fallback. `en`, `en-US`, and other English subtags use the English table.
 - `contract.claims`: selectors and claim kinds. An empty list permits schema-only checks.
 - `contract.record_rules`: optional requirements for evidence within a whole record.
 - `contract.quotes_path`: optional pointer to a quote dictionary, default `#/quotes`.
@@ -106,7 +104,7 @@ If the schema passes, apply semantic rules to each selected claim:
 Count qualifications are `exact`, `approximate`, `at_least`, `more_than`, `at_most`,
 `less_than`, `range`, and `unquantified`. `range` requires `upper_value >= value`;
 other qualifications prohibit `upper_value`. `unquantified` requires null bounds.
-Amounts use the same qualifications except `range` in interface v1; unquantified
+Amounts use the same qualifications except `range`; unquantified
 amounts have null amount text, and quoted prose can describe the uncertainty.
 Qualification labels are checked for consistency, not inferred from natural language.
 `causal_scope` has no built-in vocabulary or requirement; callers declare those.
@@ -169,7 +167,7 @@ A nonexact quote has no exact occurrences and one diagnosis, chosen in this orde
 5. `other`: report the longest prefix and suffix of the quote found in the document,
    measured on code-point boundaries. Either may be empty.
 
-Diagnosis never changes `exact=false`. Interface v1 requires exact matching.
+Diagnosis never changes `exact=false`. Quote checking requires exact matching.
 
 ## 3. Value support
 
@@ -178,7 +176,7 @@ match is diagnosed as `as_written_elsewhere_in_text` if it occurs elsewhere in t
 source, otherwise `as_written_not_in_text`.
 
 Count reading reports sorted, unique arbitrary-precision nonnegative integers.
-English v1 recognizes digit literals with valid thousands grouping and number words
+The English rules recognize digit literals with valid thousands grouping and number words
 from zero through billions, including hundreds, hyphens, and conjunctions inside a
 number. Decimals and ordinal tokens do not become integer counts. Count reading
 uses integer arithmetic throughout, without floating-point conversion.
@@ -192,7 +190,7 @@ several literal candidates; this limitation is explicit.
 
 For amounts, all supplied as-written parts must occur inside the quote. An optional
 amount reading converts a single USD amount to integer cents using decimal arithmetic,
-with half-cent ties rounded away from zero. English v1 recognizes `$`, `USD`, and
+with half-cent ties rounded away from zero. The English rules recognize `$`, `USD`, and
 `dollar(s)` and the scales thousand/k, million/m/mln, billion/b/bn. Conflicting or
 non-USD currency markers give `unsupported_currency`; ranges, multiple numeric
 amounts, or unreadable amounts give `unparsed`. Parsing does not invent a conversion
@@ -229,7 +227,7 @@ zero becomes zero), no insignificant whitespace, and no timestamps. Preserve
 array order: claims by contract declaration then selected array index, issues by path
 then code then message, and occurrences by source position. Contract and language-table
 SHA-256 values hash this canonical representation of their parsed JSON, including all
-declared contract fields. Identical requests and rule versions produce identical bytes.
+declared contract fields. Identical requests and rule data produce identical bytes.
 
 ## 5. Filter-size audit
 
@@ -277,6 +275,6 @@ An invalid line does not discard other records. Operation error codes are
 and `internal_error`. The command and C-library guides describe their validation
 result formats, invocation errors, and memory ownership.
 
-Behavior changes require explicit rule/interface version decisions and a changelog
-entry. Go, CLI, and C validation use the same schemas and finding rules.
+Behavior changes update the contract, schemas, tests, and changelog. Content hashes
+identify the contract and language rules. Go, CLI, and C validation use the same schemas and finding rules.
 The [testing guide](testing.md) describes the test suite and contract scenarios.

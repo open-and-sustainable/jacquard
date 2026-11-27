@@ -100,7 +100,7 @@ func TestFindingOrderIsDeterministic(t *testing.T) {
 }
 
 func TestTypedErrorsAndJSONResults(t *testing.T) {
-	err := jacquard.ValidateInput(`{}`, "v1")
+	err := jacquard.ValidateInput(`{}`)
 	var findings *jacquard.Error
 	if !errors.As(err, &findings) || len(findings.Issues) == 0 || !strings.Contains(err.Error(), "validation errors") {
 		t.Fatalf("want validation findings, got %v", err)
@@ -109,7 +109,7 @@ func TestTypedErrorsAndJSONResults(t *testing.T) {
 	if result.Valid || len(result.Issues) == 0 || result.Error != "" {
 		t.Fatalf("invalid finding result: %+v", result)
 	}
-	result = jacquard.ResultFor(jacquard.ValidateInput(`{}`, "v99"))
+	result = jacquard.ResultFor(jacquard.Validate(`{}`, "unknown"))
 	if result.Valid || result.Error == "" || len(result.Issues) != 0 {
 		t.Fatalf("invalid configuration error result: %+v", result)
 	}

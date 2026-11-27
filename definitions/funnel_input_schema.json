@@ -1,11 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Jacquard v1 funnel_input",
+  "title": "Jacquard funnel_input",
   "type": "object",
   "properties": {
-    "metadata": {
-      "$ref": "#/definitions/metadata"
-    },
     "stages": {
       "type": "array",
       "items": {
@@ -72,7 +69,6 @@
     }
   },
   "required": [
-    "metadata",
     "stages",
     "reference_values",
     "items"
@@ -114,18 +110,6 @@
           "additionalProperties": false
         }
       ]
-    },
-    "metadata": {
-      "type": "object",
-      "properties": {
-        "schemaVersion": {
-          "const": "v1"
-        }
-      },
-      "required": [
-        "schemaVersion"
-      ],
-      "additionalProperties": false
     }
   }
 }
