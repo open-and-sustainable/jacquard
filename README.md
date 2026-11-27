@@ -4,6 +4,9 @@
 
 Deterministic evidence checking for AI-assisted knowledge synthesis.
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/open-and-sustainable/jacquard.svg)](https://pkg.go.dev/github.com/open-and-sustainable/jacquard)
+[![Documentation](https://img.shields.io/badge/docs-GitHub%20Pages-342777)](https://open-and-sustainable.github.io/jacquard/)
+
 ## About
 
 Jacquard is open science software for deterministic evidence checking in
@@ -45,16 +48,13 @@ For example, call `jacquard.ValidateInput(inputJSON)` or
 
 ## Documentation
 
-- [User guide](docs/index.md)
+- [User guide](https://open-and-sustainable.github.io/jacquard/)
 - [Checker contract](docs/checker-contract.md)
 - [Schemas and validation](docs/schemas-validation.md)
 - [C-shared library](docs/cshared-library.md)
 - [Development and testing](docs/development.md)
-- [API reference](https://pkg.go.dev/github.com/open-and-sustainable/jacquard)
+- [Go API reference](https://pkg.go.dev/github.com/open-and-sustainable/jacquard)
 - [Changelog](CHANGELOG.md)
-
-Documentation:
-[open-and-sustainable.github.io/jacquard](https://open-and-sustainable.github.io/jacquard/).
 
 The documentation and development patterns follow
 [Alembica](https://github.com/open-and-sustainable/alembica): JSON schemas,
