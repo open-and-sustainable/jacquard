@@ -1,5 +1,5 @@
 // Package jacquard provides versioned contracts and JSON interface validation for
-// deterministic evidence checking of extracted claims.
+// deterministic evidence checking in knowledge synthesis.
 //
 // # Supported interfaces
 //

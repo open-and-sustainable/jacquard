@@ -1,4 +1,4 @@
-# `jacquard` Changelog
+# Jacquard Changelog
 
 All notable changes to this project will be documented in this file.
 Releases use semantic versioning as in `MAJOR.MINOR.PATCH`.
@@ -30,3 +30,10 @@ Releases use semantic versioning as in `MAJOR.MINOR.PATCH`.
 
 - Collect all public Go types, schema helpers, and validation functions in the
   root `github.com/open-and-sustainable/jacquard` package, so callers use one import.
+- Describe Jacquard as deterministic evidence checking for knowledge synthesis,
+  with a plain project name in headings and citations.
+
+### Fixed
+
+- Quote the coverage flag in CI so Windows PowerShell passes the complete filename
+  to Go instead of treating `.out` as a separate package argument.
